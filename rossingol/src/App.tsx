@@ -1,8 +1,12 @@
+import getRandomTag from "./utlis/getRandomTag"
+
 function App() {
 
   return (
     <>
-      <h1>Rossignol Music</h1>
+      <button onClick={getRandomTag}>
+        TEST BTN SEE LOG
+      </button>
     </>
   )
 }
