@@ -1,11 +1,14 @@
-import useGetTagsPages from "../hooks/useGetTagPages"
+import useGetRandomTag from "../hooks/useGetRandomTag";
 
 const RossignolView = () => {
-    const { dataAllPages } = useGetTagsPages();
+    const { randomTag, refetchRandomTag } = useGetRandomTag();
 
     return (
         <>
-            <button onClick={() => console.log(dataAllPages)}>
+            <button onClick={() => {
+                refetchRandomTag();
+                console.log(randomTag);
+            }}>
                 TEST BTN SEE LOG
             </button>
         </>
