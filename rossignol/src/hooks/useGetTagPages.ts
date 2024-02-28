@@ -6,7 +6,7 @@ const useGetTagsPages = () => {
 
     // Get all the pages available
     const paramsAllPages : URLSearchParams = new URLSearchParams();
-    paramsAllPages.set("method", `tag.gettoptracks`);
+    paramsAllPages.set("method", `tag.gettoptags`);
     paramsAllPages.set("api_key", API_KEY);
     paramsAllPages.set("format", `json`);
 
@@ -14,7 +14,9 @@ const useGetTagsPages = () => {
         queryKey: ['getAllTag'],
         queryFn: async () => {
            const data = await fetch(`${baseURL}${paramsAllPages}`).then(res => res.json());
-           return data;
+
+           const numberOfPages = data.toptags['@attr'].total;
+           return numberOfPages;
         },
     })
 
