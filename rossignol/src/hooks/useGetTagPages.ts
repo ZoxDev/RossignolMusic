@@ -11,11 +11,11 @@ const useGetTagsPages = () => {
     paramsAllPages.set("format", `json`);
 
     const { isPending : pendingAllPages, error : errorAllPages, data : dataAllPages} = useQuery({
-        queryKey: ['getAllTag'],
+        queryKey: ['getTagsPages'],
         queryFn: async () => {
            const data = await fetch(`${baseURL}${paramsAllPages}`).then(res => res.json());
 
-           const numberOfPages = data.toptags['@attr'].total;
+           const numberOfPages : number = data.toptags['@attr'].total;
            return numberOfPages;
         },
     })
