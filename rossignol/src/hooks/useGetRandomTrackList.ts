@@ -12,13 +12,15 @@ type tracksResult = {
     tracks:
     {
         track:
-        {
-            artist:
+        [
             {
+                artist:
+                {
+                    name: string;
+                };
                 name: string;
-            };
-            name: string;
-        };
+            }
+        ]
     };
 }
 
@@ -27,8 +29,12 @@ const useGetRandomTrackList = (tagName: string) => {
     const baseURL: URL = new URL(`http://ws.audioscrobbler.com/2.0/?`);
 
     const [trackList, setTrackList] = useState<Array<trackListType>>([]);
+    
 
     const queryGetRandomTrackList = async (tag: string) => {
+        //Reset the previous track list
+        setTrackList([]);
+
         // Fetch only 5 pages of 1000 items cause lastfm broke pagination
         const allPages = [1, 2, 3, 4, 5].map((page) => {
             const searchParams: URLSearchParams = new URLSearchParams();
@@ -36,7 +42,7 @@ const useGetRandomTrackList = (tagName: string) => {
             searchParams.set("tag", `${tag}`);
             searchParams.set("api_key", API_KEY);
             searchParams.set("format", `json`);
-            searchParams.set("limit", `1000`);
+            searchParams.set("limit", `100`);
             searchParams.set("page", `${page}`);
 
             // Return for each page a promise 
@@ -46,26 +52,25 @@ const useGetRandomTrackList = (tagName: string) => {
         await Promise.all(allPages)
             .then(results => {
                 results.forEach((result: tracksResult) => {
-                    setTrackList(trackList.concat({
-                        trackArtist: result.tracks.track.artist.name,
-                        trackName: result.tracks.track.name
-                    }));
+                    result.tracks.track.map((item) => {
+                        console.log(item)
+                        setTrackList(prevItem => [...prevItem,  {trackArtist: item.artist.name, trackName: item.name} ]);
+                        console.log(trackList);
+                    });
                 })
             });
 
-        console.log(trackList);
+        return trackList;
     }
 
     const { isPending: pendingTrackList, error: errorTrackList, refetch: refetchTrackList } = useQuery({
         queryKey: ['getTrackList', tagName],
         queryFn: () => queryGetRandomTrackList(tagName),
-        enabled: true,
+        enabled: false,
     })
 
     return { pendingTrackList, errorTrackList, refetchTrackList, trackList };
 }
 
 export default useGetRandomTrackList;
-
-// FIX 3X CALL
-// FIX RETURN GOOD DATA
+// Fix first call don't work
