@@ -1,15 +1,14 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import RossignolView from "./views/RossignolView";
 
 const queryClient = new QueryClient();
 
 function App() {
-
   return (
     <QueryClientProvider client={queryClient}>
-      <RossignolView/>
+      <RossignolView />
     </QueryClientProvider>
-  )
+  );
 }
 
-export default App
+export default App;
