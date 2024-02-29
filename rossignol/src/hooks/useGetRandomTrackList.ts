@@ -29,7 +29,6 @@ const useGetRandomTrackList = (tagName: string) => {
     const baseURL: URL = new URL(`http://ws.audioscrobbler.com/2.0/?`);
 
     const [trackList, setTrackList] = useState<Array<trackListType>>([]);
-    
 
     const queryGetRandomTrackList = async (tag: string) => {
         //Reset the previous track list
@@ -51,11 +50,12 @@ const useGetRandomTrackList = (tagName: string) => {
 
         await Promise.all(allPages)
             .then(results => {
+                // The 5 results
                 results.forEach((result: tracksResult) => {
+                    
+                    // each items in a result
                     result.tracks.track.map((item) => {
-                        console.log(item)
-                        setTrackList(prevItem => [...prevItem,  {trackArtist: item.artist.name, trackName: item.name} ]);
-                        console.log(trackList);
+                        
                     });
                 })
             });
