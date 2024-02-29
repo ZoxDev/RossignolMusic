@@ -21,14 +21,14 @@ const useGetRandomTag = () => {
             paramsRandomTag.set("format", `json`);
             paramsRandomTag.set("offset", `${randomPage}`)
 
+            // Random index in response array (On 50 elem)
             const randomTagIndex = Math.floor(Math.random() * 49);
 
             // Get all tag on a page
             const data = await fetch(`${baseURL}${paramsRandomTag}`).then(res => res.json());
             setDataRanmdomTag(data.toptags.tag[randomTagIndex].name);
 
-            console.log(dataRandomTag);
-            return;
+            return dataRandomTag;
         },
         enabled: false,
     })
