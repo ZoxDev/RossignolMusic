@@ -5,7 +5,6 @@ const RossignolView = () => {
     const { tagName, refetchRandomTag } = useGetRandomTag();
     const { refetchTrackList, trackList} = useGetRandomTrackList(tagName);
     
-
     const handleClick = async () => {
         await refetchRandomTag();
         await refetchTrackList();
