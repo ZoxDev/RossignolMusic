@@ -1,10 +1,15 @@
 import useGetRandomTag from "../hooks/useGetRandomTag";
+import useGetRandomTrackList from "../hooks/useGetRandomTrackList";
 
 const RossignolView = () => {
-    const { dataRandomTag, refetchRandomTag } = useGetRandomTag();
+    const { tagName, refetchRandomTag } = useGetRandomTag();
+    const { refetchTrackList, trackList} = useGetRandomTrackList(tagName);
+    
 
     const handleClick = async () => {
         await refetchRandomTag();
+        await refetchTrackList();
+        console.log(trackList);
     }
 
     return (
@@ -12,7 +17,7 @@ const RossignolView = () => {
             <button onClick={handleClick}>
                 TEST BTN SEE LOG
             </button>
-            <h1>{dataRandomTag}</h1>
+            <h1></h1>
         </>
     )
 }

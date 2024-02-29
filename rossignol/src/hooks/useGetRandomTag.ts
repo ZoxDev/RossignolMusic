@@ -7,7 +7,7 @@ const useGetRandomTag = () => {
     const API_KEY = import.meta.env.VITE_API_KEY_LASTFM;
     const baseURL: URL = new URL(`http://ws.audioscrobbler.com/2.0/?`);
 
-    const [dataRandomTag, setDataRanmdomTag] = useState<string>("");
+    const [tagName, setTagName] = useState<string>("");
 
     const { isPending: pendingRandomTag, error: errorRandomTag, refetch: refetchRandomTag } = useQuery({
         queryKey: ['getTagInPage'],
@@ -26,14 +26,14 @@ const useGetRandomTag = () => {
 
             // Get all tag on a page
             const data = await fetch(`${baseURL}${paramsRandomTag}`).then(res => res.json());
-            setDataRanmdomTag(data.toptags.tag[randomTagIndex].name);
+            setTagName(data.toptags.tag[randomTagIndex].name);
 
-            return dataRandomTag;
+            return tagName;
         },
         enabled: false,
     })
 
-    return { pendingRandomTag, errorRandomTag, dataRandomTag, refetchRandomTag };
+    return { pendingRandomTag, errorRandomTag, tagName, refetchRandomTag };
 }
 
 export default useGetRandomTag;
