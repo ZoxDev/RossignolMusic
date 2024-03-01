@@ -1,34 +1,40 @@
 import useTags from '../hooks/useTags';
-import useTracksLastFm from '../hooks/useTracksLastFm';
+import useTracks from '../hooks/useTracks';
+import useRandom from '../hooks/useRandom';
 import { useState } from 'react';
 
+const firstPage = Math.floor(Math.random() * 2000);
+
 const RossignolView = () => {
-  // State
-  const [randomPage, setRandomPage] = useState<number | undefined>(undefined);
+  const [randomTagsPage, setRandomTagsPage] = useState(firstPage);
+  const [randomTracksPage, setRandomTracksPage] = useState(0);
 
   // When random page change do a new query with the page
-  const tagQuery = useTags(randomPage);
+  const tags = useTags(randomTagsPage);
+  const tag = useRandom(tags.data?.toptags.tag);
+  const tracks = useTracks(tag?.name, randomTracksPage);
+  const track = useRandom(tracks.data?.tracks.track);
 
-  const tracks = useTracksLastFm(tagQuery.data?.toptags.tag[0].name, 0);
-
-  const handleGetRandomPage = async () => {
-    setRandomPage(Math.floor(Math.random() * 2000));
+  // Click action
+  const handleGetRandomTrack = () => {
+    setRandomTagsPage(Math.floor(Math.random() * 2000));
+    // setRandomTracksPage(
+    //   Math.floor(Math.random() * parseInt(tracks.data?.tracks['@attr'].totalPages ?? '10')),
+    // );
   };
+
+  if (!tracks.isFetching && tracks.data?.tracks.track.length === 0) {
+    setRandomTracksPage(
+      Math.floor(Math.random() * parseInt(tracks.data.tracks['@attr'].totalPages)),
+    );
+  }
 
   return (
     <>
-      <button onClick={handleGetRandomPage}>TEST BTN SEE LOG</button>
+      <button onClick={handleGetRandomTrack}>TEST BTN SEE LOG</button>
+      <div>{tags.isLoading ? <h1>Loading...</h1> : <h1>{tag.name}</h1>}</div>
       <div>
-        {tagQuery.isLoading ? <h1>Loading...</h1> : <h1>{tagQuery.data?.toptags.tag[0].name}</h1>}
-      </div>
-      <div>
-        {tracks.isLoading ? (
-          <h1>Loading ...</h1>
-        ) : (
-          <h1>
-            {tracks.data?.tracks.track[0].artist.name} {tracks.data?.tracks.track[0].name}
-          </h1>
-        )}
+        Artist : {track?.artist.name} Name {track?.name}:
       </div>
     </>
   );
