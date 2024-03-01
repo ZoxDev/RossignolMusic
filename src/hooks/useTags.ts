@@ -17,9 +17,14 @@ type typeTagsList = {
   };
 };
 
-const useTags = (page: number) => {
+const useTags = (page: number | undefined) => {
   const API_KEY = import.meta.env.VITE_API_KEY_LASTFM;
   const baseURL: URL = new URL(`http://ws.audioscrobbler.com/2.0/?`);
+
+  const canFetch = () => {
+    if (page != undefined) return true;
+    else return false;
+  };
 
   return useQuery({
     queryKey: ['getTagInPage', page],
@@ -37,6 +42,7 @@ const useTags = (page: number) => {
 
       return data;
     },
+    enabled: canFetch(),
     placeholderData: keepPreviousData,
     refetchOnWindowFocus: false,
   });
