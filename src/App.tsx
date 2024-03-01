@@ -1,5 +1,5 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import RossignolView from "./views/RossignolView";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import RossignolView from './views/RossignolView';
 
 const queryClient = new QueryClient();
 
