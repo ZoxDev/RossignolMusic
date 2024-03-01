@@ -1,20 +1,27 @@
-import useGetRandomTag from '../hooks/useGetRandomTag';
+import useGetTags from '../hooks/useGetTags';
 import useGetRandomTrackList from '../hooks/useGetRandomTrackList';
+import { useState } from 'react';
 
 const RossignolView = () => {
-  const { tagName, refetchRandomTag } = useGetRandomTag();
-  const { refetchTrackList, trackList } = useGetRandomTrackList(tagName);
+  // State
+  const [randomPage, setRandomPage] = useState(0);
 
-  const handleClick = async () => {
-    await refetchRandomTag().then(() => refetchTrackList());
+  // When random page change do a new query with the page
+  const { dataGetTags, pendingGetTags, errorGetTags } = useGetTags(randomPage);
+  if (pendingGetTags) return 'Loading...';
+  if (errorGetTags) return `An error occured ${errorGetTags}`;
 
-    console.log(trackList);
+  const handleGetRandomPage = async () => {
+    setRandomPage(Math.floor(Math.random() * 2000));
+    console.log(dataGetTags);
   };
 
   return (
     <>
-      <button onClick={handleClick}>TEST BTN SEE LOG</button>
-      <h1></h1>
+      <button onClick={handleGetRandomPage}>TEST BTN SEE LOG</button>
+      <div>
+        {pendingGetTags ? <h1>Loading...</h1> : <h1>{dataGetTags?.toptags.tag[0].name}</h1>}
+      </div>
     </>
   );
 };
