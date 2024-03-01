@@ -7,9 +7,7 @@ const RossignolView = () => {
   const [randomPage, setRandomPage] = useState(0);
 
   // When random page change do a new query with the page
-  const { dataGetTags, pendingGetTags, errorGetTags } = useGetTags(randomPage);
-  if (pendingGetTags) return 'Loading...';
-  if (errorGetTags) return `An error occured ${errorGetTags}`;
+  const { dataGetTags, pendingGetTags } = useGetTags(randomPage);
 
   const handleGetRandomPage = async () => {
     setRandomPage(Math.floor(Math.random() * 2000));
