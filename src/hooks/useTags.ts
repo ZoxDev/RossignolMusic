@@ -21,18 +21,13 @@ const useTags = (page: number | undefined) => {
   const API_KEY = import.meta.env.VITE_API_KEY_LASTFM;
   const baseURL: URL = new URL(`http://ws.audioscrobbler.com/2.0/?`);
 
-  const canFetch = () => {
-    if (page != undefined) return true;
-    else return false;
-  };
-
   return useQuery({
     queryKey: ['getTagInPage', page],
     queryFn: async () => {
       const paramsRandomTag: URLSearchParams = new URLSearchParams();
-      paramsRandomTag.set('method', `tag.gettoptags`);
+      paramsRandomTag.set('method', 'tag.gettoptags');
       paramsRandomTag.set('api_key', API_KEY);
-      paramsRandomTag.set('format', `json`);
+      paramsRandomTag.set('format', 'json');
       paramsRandomTag.set('offset', `${page}`);
 
       // Get all tag on a page
@@ -42,7 +37,6 @@ const useTags = (page: number | undefined) => {
 
       return data;
     },
-    enabled: canFetch(),
     placeholderData: keepPreviousData,
     refetchOnWindowFocus: false,
   });
