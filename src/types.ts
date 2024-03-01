@@ -1,5 +1,5 @@
 // Track type
 export type Track = {
-  artist: { name: string };
-  name: string;
+  artist: { name: string | undefined };
+  name: string | undefined;
 };
