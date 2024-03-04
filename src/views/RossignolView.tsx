@@ -2,6 +2,7 @@ import useTags from '../hooks/useTags';
 import useTracks from '../hooks/useTracks';
 import useRandom from '../hooks/useRandom';
 import { useState } from 'react';
+import useSearchSong from '../hooks/useSearchSong';
 
 const firstPage = Math.floor(Math.random() * 2000);
 
@@ -13,6 +14,7 @@ const RossignolView = () => {
   const tag = useRandom(tags.data?.toptags.tag);
   const tracks = useTracks(tag?.name, randomTracksPage);
   const track = useRandom(tracks.data?.tracks.track);
+  const songInfo = useSearchSong(track);
 
   // Click action
   const handleGetRandomTrack = () => {
@@ -35,6 +37,7 @@ const RossignolView = () => {
       <div>
         Artist : {track?.artist.name} Name {track?.name}:
       </div>
+      <pre>{JSON.stringify(songInfo, null, 2)}</pre>
     </>
   );
 };
