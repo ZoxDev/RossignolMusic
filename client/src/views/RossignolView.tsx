@@ -35,9 +35,13 @@ const RossignolView = () => {
       <button onClick={handleGetRandomTrack}>TEST BTN SEE LOG</button>
       <div>{tags.isLoading ? <h1>Loading...</h1> : <h1>{tag?.name}</h1>}</div>
       <div>
-        Artist : {track?.artist.name} Name {track?.name}:
+        Artist : {track?.artist.name} <br />
+        Name {track?.name}:
       </div>
-      <pre>{JSON.stringify(songInfo, null, 2)}</pre>
+      <div>
+        Music id : {songInfo.data?.videoId} <br />
+        Music duration : {songInfo.data?.durationInMS}
+      </div>
     </>
   );
 };
