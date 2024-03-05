@@ -4,7 +4,8 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.8.2",
-    "hono": "^4.0.9"
+    "hono": "^4.0.9",
+    "youtubei.js": "^9.1.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
