@@ -14,9 +14,6 @@ dependencies:
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
-  youtubei.js:
-    specifier: ^9.1.0
-    version: 9.1.0
 
 devDependencies:
   '@types/react':
@@ -528,11 +525,6 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@fastify/busboy@2.1.1:
-    resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
-    engines: {node: '>=14'}
-    dev: false
-
   /@humanwhocodes/config-array@0.11.14:
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
@@ -948,6 +940,7 @@ packages:
     resolution: {integrity: sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+    dev: true
 
   /ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
@@ -1478,12 +1471,6 @@ packages:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
     dev: true
 
-  /jintr@1.1.0:
-    resolution: {integrity: sha512-Tu9wk3BpN2v+kb8yT6YBtue+/nbjeLFv4vvVC4PJ7oCidHKbifWhvORrAbQfxVIQZG+67am/mDagpiGSVtvrZg==}
-    dependencies:
-      acorn: 8.11.3
-    dev: false
-
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
@@ -1864,10 +1851,6 @@ packages:
       typescript: 5.3.3
     dev: true
 
-  /tslib@2.6.2:
-    resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
-    dev: false
-
   /type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
@@ -1885,13 +1868,6 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true
-
-  /undici@5.28.3:
-    resolution: {integrity: sha512-3ItfzbrhDlINjaP0duwnNsKpDQk3acHI3gVJ1z4fmwMK31k5G9OVIAMLSIaP6w4FaGkaAkN6zaQO9LUvZ1t7VA==}
-    engines: {node: '>=14.0'}
-    dependencies:
-      '@fastify/busboy': 2.1.1
-    dev: false
 
   /update-browserslist-db@1.0.13(browserslist@4.23.0):
     resolution: {integrity: sha512-xebP81SNcPuNpPP3uzeW1NYXxI3rxyJzF3pD6sH4jE7o/IX+WtSpwnVU+qIsDPyk0d3hmFQ7mjqc6AtV604hbg==}
@@ -1969,11 +1945,3 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
-
-  /youtubei.js@9.1.0:
-    resolution: {integrity: sha512-C5GBJ4LgnS6vGAUkdIdQNOFFb5EZ1p3xBvUELNXmIG3Idr6vxWrKNBNy8ClZT3SuDVXaAJqDgF9b5jvY8lNKcg==}
-    dependencies:
-      jintr: 1.1.0
-      tslib: 2.6.2
-      undici: 5.28.3
-    dev: false
