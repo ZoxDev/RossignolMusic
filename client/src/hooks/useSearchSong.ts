@@ -26,11 +26,6 @@ const useSearchSong = async (track: Track | undefined) => {
       // Now serialize the headers.
       url.searchParams.set('__headers', JSON.stringify([...headers]));
 
-      if (input instanceof Request) {
-        // @ts-ignore 
-        input.duplex = 'half';
-      }
-
       // Copy over the request.
       const request = new Request(url, input instanceof Request ? input : undefined);
 
