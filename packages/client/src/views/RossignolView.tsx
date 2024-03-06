@@ -3,6 +3,7 @@ import useTracks from '../hooks/useTracks';
 import useRandom from '../hooks/useRandom';
 import { useState } from 'react';
 import useSearchSong from '../hooks/useSearchSong';
+import Player from '../components/Player';
 
 const firstPage = Math.floor(Math.random() * 2000);
 
@@ -38,10 +39,7 @@ const RossignolView = () => {
         Artist : {track?.artist.name} <br />
         Name {track?.name}:
       </div>
-      <div>
-        Music id : {songInfo.data?.videoId} <br />
-        Music duration : {songInfo.data?.durationInMS}
-      </div>
+      <Player videoId={songInfo?.data?.videoId}/>
     </>
   );
 };
