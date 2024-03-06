@@ -1,5 +1,5 @@
 import { Track } from '../types';
-import { useQuery, keepPreviousData } from '@tanstack/react-query';
+import { useQuery, keepPreviousData, skipToken } from '@tanstack/react-query';
 
 export type songInfo = {
   videoId?: string;
@@ -11,20 +11,22 @@ const useSearchSong = (track?: Track) => {
 
   return useQuery({
     queryKey: ['song', track],
-    queryFn: async () => {
-      const paramsRandomTag = new URLSearchParams();
-      paramsRandomTag.set('artist', `${track?.artist.name}`);
-      paramsRandomTag.set('title', `${track?.name}`);
+    queryFn: track
+      ? async () => {
+          const paramsRandomTag = new URLSearchParams();
+          paramsRandomTag.set('artist', `${track?.artist.name}`);
+          paramsRandomTag.set('title', `${track?.name}`);
 
-      const data = await fetch(`${baseURL}${paramsRandomTag}`).then((res) => res.json());
+          const data = await fetch(`${baseURL}${paramsRandomTag}`).then((res) => res.json());
 
-      const song: songInfo = {
-        videoId: data?.results[0].id,
-        durationInMS: data?.results[0].duration.seconds * 1000,
-      };
+          const song: songInfo = {
+            videoId: data?.results[0].id,
+            durationInMS: data?.results[0].duration.seconds * 1000,
+          };
 
-      return song;
-    },
+          return song;
+        }
+      : skipToken,
     placeholderData: keepPreviousData,
     refetchOnWindowFocus: false,
   });
