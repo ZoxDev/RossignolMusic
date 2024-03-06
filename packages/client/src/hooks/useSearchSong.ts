@@ -1,9 +1,9 @@
 import { Track } from '../types';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 
-type songInfo = {
-  videoId: string;
-  durationInMS: number;
+export type songInfo = {
+  videoId?: string;
+  durationInMS?: number;
 };
 
 const useSearchSong = (track?: Track) => {
