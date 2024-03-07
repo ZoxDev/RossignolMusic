@@ -2,7 +2,6 @@ services:
   - type: web
     name: back
     runtime: node
-    plan: free
     rootDir: packages/server
     buildCommand: pnpm -F server build
     startCommand: pnpm -F server start
@@ -10,7 +9,6 @@ services:
   - type: web
     name: front
     runtime: static
-    plan: free
     rootDir: packages/client
     buildCommand: pnpm -F client build
     staticPublishPath: packages/client/dist
