@@ -1,16 +1,15 @@
 services:
-  - type: web
-    name: front
-    runtime: static
-    plan: free
-    rootDir: packages/client
-    buildCommand: pnpm -F client build
-
-    staticPublishPath: packages/client/dist
-  - type: web
-    name: back
+  - name: back
     runtime: node
     plan: free
     rootDir: packages/server
     buildCommand: pnpm -F server build
     startCommand: pnpm -F server start
+
+staticSites:
+  - name: front
+    runtime: static
+    plan: free
+    rootDir: packages/client
+    buildCommand: pnpm -F client build
+    staticPublishPath: packages/client/dist
