@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "@rossignol/server",
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc"
