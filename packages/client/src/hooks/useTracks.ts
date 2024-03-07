@@ -15,9 +15,11 @@ export type Tracks = {
   };
 };
 
+const API_KEY = import.meta.env.VITE_API_KEY;
+const API_URL = import.meta.env.VITE_API_URL;
+
 const useTracks = (tagName: string | undefined, page: number) => {
-  const API_KEY = import.meta.env.VITE_API_KEY_LASTFM;
-  const baseURL: URL = new URL(`http://ws.audioscrobbler.com/2.0/?`);
+  const baseURL: URL = new URL(API_URL);
 
   return useQuery({
     queryKey: ['Tracks', tagName, page],
