@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player';
 import { useState } from 'react';
 
 const Player = (props: songInfo) => {
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying] = useState(true);
 
   return (
     <>
