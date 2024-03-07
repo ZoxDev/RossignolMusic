@@ -7,7 +7,6 @@ services:
     buildCommand: pnpm -F server build
     startCommand: pnpm -F server start
 
-staticSites:
   - name: front
     runtime: static
     plan: free
