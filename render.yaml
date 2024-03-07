@@ -1,5 +1,6 @@
 services:
-  - name: back
+  - type: web
+    name: back
     runtime: node
     plan: free
     rootDir: packages/server
