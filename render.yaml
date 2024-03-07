@@ -11,4 +11,4 @@ services:
     runtime: static
     rootDir: packages/client
     buildCommand: pnpm -F client build
-    staticPublishPath: packages/client/dist
+    staticPublishPath: ./dist
