@@ -4,7 +4,7 @@ services:
     runtime: static
     rootDir: packages/client
     buildCommand: pnpm -F client build
-    staticPublicPath: packages/client/dist
+    staticPublishPath: packages/client/dist
   - type: web
     name: back
     runtime: node
