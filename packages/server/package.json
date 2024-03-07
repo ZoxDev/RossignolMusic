@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsc --outdir dist",
+    "build": "pnpm install && tsc --outdir dist",
     "start": "node dist/index.js",
     "typecheck": "tsc --noEmit"
   },
