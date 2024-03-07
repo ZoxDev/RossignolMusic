@@ -16,7 +16,7 @@ const useSearchSong = (track?: Track) => {
           paramsRandomTag.set('artist', `${track?.artist.name}`);
           paramsRandomTag.set('title', `${track?.name}`);
 
-          const data = await fetch(`${BACKEND_URL}/getVideo/?${paramsRandomTag}`).then((res) =>
+          const data = await fetch(`${BACKEND_URL}/searchVideo?${paramsRandomTag}`).then((res) =>
             res.json(),
           );
 
