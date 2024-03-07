@@ -7,7 +7,8 @@ services:
     buildCommand: pnpm -F server build
     startCommand: pnpm -F server start
 
-  - name: front
+  - type: web
+    name: front
     runtime: static
     plan: free
     rootDir: packages/client
