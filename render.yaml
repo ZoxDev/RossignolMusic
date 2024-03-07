@@ -1,0 +1,13 @@
+services:
+- type: web
+  name: front
+  runtime: static
+  rootDir: packages/client
+  buildCommand: pnpm run build/client
+  # startCommand to set
+- type: web
+  name: back
+  runtime: node
+  rootDir: packages/server
+  buildCommand: pnpm run build/server
+  # startCommand to set
