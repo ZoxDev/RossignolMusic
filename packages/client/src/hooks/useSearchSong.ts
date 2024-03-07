@@ -1,3 +1,4 @@
+import { BACKEND_URL } from '../config';
 import { Track } from '../types';
 import { useQuery, keepPreviousData, skipToken } from '@tanstack/react-query';
 
@@ -7,8 +8,6 @@ export type songInfo = {
 };
 
 const useSearchSong = (track?: Track) => {
-  const baseURL = 'http://localhost:3000/getVideo/?';
-
   return useQuery({
     queryKey: ['song', track],
     queryFn: track
@@ -17,7 +16,9 @@ const useSearchSong = (track?: Track) => {
           paramsRandomTag.set('artist', `${track?.artist.name}`);
           paramsRandomTag.set('title', `${track?.name}`);
 
-          const data = await fetch(`${baseURL}${paramsRandomTag}`).then((res) => res.json());
+          const data = await fetch(`${BACKEND_URL}/getVideo/?${paramsRandomTag}`).then((res) =>
+            res.json(),
+          );
 
           const song: songInfo = {
             videoId: data?.results[0].id,
