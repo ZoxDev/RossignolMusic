@@ -3,11 +3,11 @@ services:
     name: front
     runtime: static
     rootDir: packages/client
-    buildCommand: pnpm -F @rossignol/client build
-    # startCommand to set
+    buildCommand: pnpm -F client build
+    staticPublicPath: packages/client/dist
   - type: web
     name: back
     runtime: node
     rootDir: packages/server
-    buildCommand: pnpm -F @rossignol/server build
-    # startCommand to set
+    buildCommand: pnpm -F server build
+    startCommand: pnpm -F server start

@@ -2,7 +2,8 @@
   "name": "@rossignol/server",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node src/index.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.8.2",
