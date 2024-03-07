@@ -1,4 +1,5 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { API_KEY, API_URL } from '../config';
 
 type typeTagsList = {
   toptags: {
@@ -18,8 +19,7 @@ type typeTagsList = {
 };
 
 const useTags = (page: number | undefined) => {
-  const API_KEY = import.meta.env.VITE_API_KEY_LASTFM;
-  const baseURL: URL = new URL(`https://ws.audioscrobbler.com/2.0/?`);
+  const baseURL: URL = new URL(API_URL);
 
   return useQuery({
     queryKey: ['getTagInPage', page],

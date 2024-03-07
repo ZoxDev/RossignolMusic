@@ -1,5 +1,6 @@
 import { keepPreviousData, skipToken, useQuery } from '@tanstack/react-query';
 import { Track } from '../types';
+import { API_KEY, API_URL } from '../config';
 
 // Last fm tag.getTopTracks result type
 export type Tracks = {
@@ -14,9 +15,6 @@ export type Tracks = {
     };
   };
 };
-
-const API_KEY = import.meta.env.VITE_API_KEY;
-const API_URL = import.meta.env.VITE_API_URL;
 
 const useTracks = (tagName: string | undefined, page: number) => {
   const baseURL: URL = new URL(API_URL);
