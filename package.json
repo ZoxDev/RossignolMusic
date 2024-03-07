@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm -r run dev"
+    "dev": "pnpm -r run dev",
+    "build/client": "cd packages/client && pnpm run build",
+    "build/server": "cd packages/server && pnpm run build"
   },
   "keywords": [],
   "author": "",
