@@ -19,7 +19,7 @@ type typeTagsList = {
 
 const useTags = (page: number | undefined) => {
   const API_KEY = import.meta.env.VITE_API_KEY_LASTFM;
-  const baseURL: URL = new URL(`http://ws.audioscrobbler.com/2.0/?`);
+  const baseURL: URL = new URL(`https://ws.audioscrobbler.com/2.0/?`);
 
   return useQuery({
     queryKey: ['getTagInPage', page],
