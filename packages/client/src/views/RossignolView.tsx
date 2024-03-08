@@ -4,18 +4,21 @@ import useRandom from '../hooks/useRandom';
 import { useState } from 'react';
 import useSearchSong from '../hooks/useSearchSong';
 import Player from '../components/Player';
+import useTrackList from '../hooks/useTrackList';
 
 const firstPage = Math.floor(Math.random() * 2000);
 
 const RossignolView = () => {
   const [randomTagsPage, setRandomTagsPage] = useState(firstPage);
   const [randomTracksPage, setRandomTracksPage] = useState(0);
-
   const tags = useTags(randomTagsPage);
   const tag = useRandom(tags.data?.toptags.tag);
   const tracks = useTracks(tag?.name, randomTracksPage);
   const track = useRandom(tracks.data?.tracks.track);
   const songInfo = useSearchSong(track);
+  const { handleDeleteTrack, trackList } = useTrackList({
+    videoId: songInfo?.data?.videoId,
+  });
 
   // Click action
   const handleGetRandomTrack = () => {
@@ -39,7 +42,10 @@ const RossignolView = () => {
         Artist : {track?.artist.name} <br />
         Name {track?.name}:
       </div>
-      <Player videoId={songInfo?.data?.videoId}/>
+      <Player
+        song={{ videoId: trackList[trackList.length - 1] }}
+        handleNext={handleGetRandomTrack}
+      />
     </>
   );
 };
