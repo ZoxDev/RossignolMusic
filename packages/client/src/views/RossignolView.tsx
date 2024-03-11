@@ -18,8 +18,8 @@ const RossignolView = () => {
   const tag = useRandom(tags.data?.toptags.tag);
   const tracks = useTracks(tag?.name, randomTracksPage);
   const track = useRandom(tracks.data?.tracks.track);
-  const songQuery = useSearchSong(track);
-  const { trackList, handleDeleteTrack } = useTrackList(songQuery.data);
+  const song = useSearchSong(track);
+  const { trackList, handleDeleteTrack } = useTrackList(song.data);
 
   const handleGetRandomTrack = () => {
     setRandomTagsPage(Math.floor(Math.random() * MAX_TAG_PAGE));
@@ -34,25 +34,21 @@ const RossignolView = () => {
     );
   }
 
+  // Loading systeme
+  if (tags.isFetching) return 'Loading genres...';
+  if (tracks.isFetching) return 'Research tracks...';
+  if (song.isFetching) return 'Getting track information...';
+  if (trackList.length === 0) return 'Sending track informations to the player...';
+
   return (
     <>
       <button onClick={handleGetRandomTrack}>RANDOM TRACK</button>
       <div>
-        {tags.isLoading || tracks.isLoading ? (
-          <h1>Loading...</h1>
-        ) : (
-          <>
-            {songQuery.isLoading || songQuery.isError || trackList.length === 0 ? (
-              <h1>Loading...</h1>
-            ) : (
-              <Player
-                song={trackList[trackList.length - 1]}
-                handlePrev={handleDeleteTrack}
-                handleNext={handleGetRandomTrack}
-              />
-            )}
-          </>
-        )}
+        <Player
+          song={trackList[trackList.length - 1]}
+          handlePrev={handleDeleteTrack}
+          handleNext={handleGetRandomTrack}
+        />
       </div>
     </>
   );

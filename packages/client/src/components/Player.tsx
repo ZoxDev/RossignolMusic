@@ -21,25 +21,19 @@ const Player = (props: playerProps) => {
     return setVolume(value);
   };
 
+  if (props.song === undefined) return 'Player waiting for display...';
+
   return (
     <>
-      {props.song === undefined ? (
-        <h1>Player waiting a song...</h1>
-      ) : (
-        <ReactPlayer
-          url={`${BASE_URL}${props.song.videoId}`}
-          playing={isPlaying}
-          volume={volume}
-          onEnded={props.handleNext}
-        />
-      )}
+      <ReactPlayer
+        url={`${BASE_URL}${props.song.videoId}`}
+        playing={isPlaying}
+        volume={volume}
+        onEnded={props.handleNext}
+      />
 
       <section>
-        {isPlaying ? (
-          <button onClick={() => setIsPlaying(!isPlaying)}>PAUSE</button>
-        ) : (
-          <button onClick={() => setIsPlaying(!isPlaying)}>PLAY</button>
-        )}
+        <button onClick={() => setIsPlaying(!isPlaying)}>{isPlaying ? 'PAUSE' : 'PLAY'}</button>
         <button onClick={props.handlePrev}>PREV</button>
         <button onClick={props.handleNext}>NEXT</button>
         <button
