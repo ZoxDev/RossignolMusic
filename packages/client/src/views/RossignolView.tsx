@@ -23,7 +23,6 @@ const RossignolView = () => {
     setRandomTracksPage(
       Math.floor(Math.random() * parseInt(tracks.data?.tracks['@attr'].totalPages ?? '10')),
     );
-    console.log({ randomTracksPage });
   };
 
   if (!tracks.isFetching && tracks.data?.tracks.track.length === 0) {
