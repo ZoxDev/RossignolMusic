@@ -54,6 +54,7 @@ const Player = (props: playerProps) => {
               max={1}
               step={0.01}
               onChange={(_, value) => handleVolumeChange(value)}
+              value={volume}
             />
           )}
         </button>
