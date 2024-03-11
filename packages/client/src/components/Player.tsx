@@ -13,6 +13,7 @@ type playerProps = {
 const Player = (props: playerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(1);
+  const [volumeHide, setVolumeHide] = useState(true);
 
   const handleVolumeChange = (value: number | number[]) => {
     if (typeof value !== 'number') throw new Error("Can't get an array of numbers");
@@ -40,14 +41,21 @@ const Player = (props: playerProps) => {
         )}
         <button>PREV</button>
         <button onClick={props.handleNext}>NEXT</button>
-        <button style={{ minWidth: '10%' }}>
-          VOLUME
-          <Slider
-            aria-label="volume"
-            max={1}
-            step={0.01}
-            onChange={(_, value) => handleVolumeChange(value)}
-          />
+        <button
+          style={{ minWidth: '10%' }}
+          onMouseEnter={() => setVolumeHide(false)}
+          onMouseLeave={() => setVolumeHide(true)}
+        >
+          {volumeHide ? (
+            <p>VOLUME</p>
+          ) : (
+            <Slider
+              aria-label="volume"
+              max={1}
+              step={0.01}
+              onChange={(_, value) => handleVolumeChange(value)}
+            />
+          )}
         </button>
         <button
           disabled={props.song === undefined}
