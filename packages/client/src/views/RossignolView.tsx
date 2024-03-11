@@ -4,28 +4,26 @@ import useRandom from '../hooks/useRandom';
 import { useState } from 'react';
 import useSearchSong from '../hooks/useSearchSong';
 import Player from '../components/Player';
-import useTrackList from '../hooks/useTrackList';
 
-const firstPage = Math.floor(Math.random() * 2000);
+const MAX_TAG_PAGE = 2000;
+const randomInitialPage = Math.floor(Math.random() * MAX_TAG_PAGE);
 
 const RossignolView = () => {
-  const [randomTagsPage, setRandomTagsPage] = useState(firstPage);
+  const [randomTagsPage, setRandomTagsPage] = useState(randomInitialPage);
   const [randomTracksPage, setRandomTracksPage] = useState(0);
   const tags = useTags(randomTagsPage);
   const tag = useRandom(tags.data?.toptags.tag);
   const tracks = useTracks(tag?.name, randomTracksPage);
   const track = useRandom(tracks.data?.tracks.track);
-  const songInfo = useSearchSong(track);
-  const { handleDeleteTrack, trackList } = useTrackList({
-    videoId: songInfo?.data?.videoId,
-  });
+  const songQuery = useSearchSong(track);
 
   // Click action
   const handleGetRandomTrack = () => {
-    setRandomTagsPage(Math.floor(Math.random() * 2000));
+    setRandomTagsPage(Math.floor(Math.random() * MAX_TAG_PAGE));
     setRandomTracksPage(
       Math.floor(Math.random() * parseInt(tracks.data?.tracks['@attr'].totalPages ?? '10')),
     );
+    console.log({ randomTracksPage });
   };
 
   if (!tracks.isFetching && tracks.data?.tracks.track.length === 0) {
@@ -36,16 +34,21 @@ const RossignolView = () => {
 
   return (
     <>
-      <button onClick={handleGetRandomTrack}>TEST BTN SEE LOG</button>
-      <div>{tags.isLoading ? <h1>Loading...</h1> : <h1>{tag?.name}</h1>}</div>
+      <button onClick={handleGetRandomTrack}>RANDOM TRACK</button>
+      <button>RANDOM SIMILAR TRACK</button>
       <div>
-        Artist : {track?.artist.name} <br />
-        Name {track?.name}:
+        {tags.isLoading || tracks.isLoading ? (
+          <h1>Loading...</h1>
+        ) : (
+          <>
+            {songQuery.isLoading || songQuery.isError ? (
+              <h1>Loading...</h1>
+            ) : (
+              <Player song={songQuery.data} handleNext={handleGetRandomTrack} />
+            )}
+          </>
+        )}
       </div>
-      <Player
-        song={{ videoId: trackList[trackList.length - 1] }}
-        handleNext={handleGetRandomTrack}
-      />
     </>
   );
 };
