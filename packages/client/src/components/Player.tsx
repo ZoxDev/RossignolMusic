@@ -6,6 +6,7 @@ import { Slider } from '@mui/material';
 const BASE_URL = `https://www.youtube.com/watch?v=`;
 
 type playerProps = {
+  handlePrev: () => void;
   handleNext: () => void;
   song?: songInfo;
 };
@@ -39,7 +40,7 @@ const Player = (props: playerProps) => {
         ) : (
           <button onClick={() => setIsPlaying(!isPlaying)}>PLAY</button>
         )}
-        <button>PREV</button>
+        <button onClick={props.handlePrev}>PREV</button>
         <button onClick={props.handleNext}>NEXT</button>
         <button
           style={{ minWidth: '10%' }}
