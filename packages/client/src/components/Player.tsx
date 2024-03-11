@@ -11,7 +11,7 @@ type playerProps = {
 };
 
 const Player = (props: playerProps) => {
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(1);
 
   const handleVolumeChange = (value: number | number[]) => {
@@ -33,7 +33,11 @@ const Player = (props: playerProps) => {
       )}
 
       <section>
-        <button onClick={() => setIsPlaying(!isPlaying)}>PLAY/PAUSE</button>
+        {isPlaying ? (
+          <button onClick={() => setIsPlaying(!isPlaying)}>PAUSE</button>
+        ) : (
+          <button onClick={() => setIsPlaying(!isPlaying)}>PLAY</button>
+        )}
         <button>PREV</button>
         <button onClick={props.handleNext}>NEXT</button>
         <button style={{ minWidth: '10%' }}>
@@ -42,7 +46,6 @@ const Player = (props: playerProps) => {
             aria-label="volume"
             max={1}
             step={0.01}
-            defaultValue={volume}
             onChange={(_, value) => handleVolumeChange(value)}
           />
         </button>
