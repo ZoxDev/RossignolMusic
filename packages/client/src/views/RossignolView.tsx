@@ -7,6 +7,7 @@ import useTrackList from '../hooks/useTrackList';
 import { useState } from 'react';
 
 import Player from '../components/Player';
+import Loading from '../components/Loading';
 
 const MAX_TAG_PAGE = 2000;
 const randomInitialPage = Math.floor(Math.random() * MAX_TAG_PAGE);
@@ -35,10 +36,11 @@ const RossignolView = () => {
   }
 
   // Loading systeme
-  if (tags.isFetching) return 'Loading genres...';
-  if (tracks.isFetching) return 'Research tracks...';
-  if (song.isFetching) return 'Getting track information...';
-  if (trackList.length === 0) return 'Sending track informations to the player...';
+  if (tags.isFetching) return <Loading message="Loading genres..." />;
+  if (tracks.isFetching) return <Loading message="Research tracks..." />;
+  if (song.isFetching) return <Loading message="Getting track information..." />;
+  if (trackList.length === 0)
+    return <Loading message="Sending track informations to the player..." />;
 
   return (
     <>

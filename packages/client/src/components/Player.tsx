@@ -2,6 +2,7 @@ import { songInfo } from '../hooks/useSearchSong';
 import ReactPlayer from 'react-player';
 import { useState } from 'react';
 import { Slider } from '@mui/material';
+import Loading from './Loading';
 
 const BASE_URL = `https://www.youtube.com/watch?v=`;
 
@@ -21,7 +22,7 @@ const Player = (props: playerProps) => {
     return setVolume(value);
   };
 
-  if (props.song === undefined) return 'Player waiting for display...';
+  if (props.song === undefined) return <Loading message="Player waiting for display..." />;
 
   return (
     <>
