@@ -22,7 +22,8 @@ const Player = (props: playerProps) => {
     return setVolume(value);
   };
 
-  if (props.song === undefined) return <Loading message="Player waiting for display..." />;
+  if (props.song === undefined)
+    return <Loading message="Click or press space for getting a track..." />;
 
   return (
     <>
