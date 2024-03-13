@@ -25,7 +25,14 @@ const RossignolView = () => {
   const handleGetRandomTrack = () => {
     setRandomTagsPage(Math.floor(Math.random() * MAX_TAG_PAGE));
     setRandomTracksPage(
-      Math.floor(Math.random() * parseInt(tracks.data?.tracks['@attr'].totalPages ?? '10')),
+      Math.floor(Math.random() * parseInt(tracks.data?.tracks['@attr'].totalPages ?? '50')),
+    );
+    handleAddTrack();
+  };
+
+  const handleSimilarTrack = () => {
+    setRandomTracksPage(
+      Math.floor(Math.random() * parseInt(tracks.data?.tracks['@attr'].totalPages ?? '50')),
     );
     handleAddTrack();
   };
@@ -45,7 +52,7 @@ const RossignolView = () => {
 
   return (
     <>
-      <button onClick={handleGetRandomTrack}>RANDOM TRACK</button>
+    <button>GET TRACK</button>
       <div>
         <Player
           song={trackList[trackList.length - 1]}
@@ -53,6 +60,8 @@ const RossignolView = () => {
           handleNext={handleGetRandomTrack}
         />
       </div>
+      <button onClick={handleGetRandomTrack}>RANDOM TRACK</button>
+      <button onClick={handleSimilarTrack}>SIMILAR TRACK</button>
     </>
   );
 };
