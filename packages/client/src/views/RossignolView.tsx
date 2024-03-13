@@ -20,27 +20,28 @@ const RossignolView = () => {
   const tracks = useTracks(tag?.name, randomTracksPage);
   const track = useRandom(tracks.data?.tracks.track);
   const song = useSearchSong(track);
-  const { trackList, handleDeleteTrack } = useTrackList(song.data);
+  const { trackList, handleDeleteTrack, handleAddTrack } = useTrackList(song.data);
 
   const handleGetRandomTrack = () => {
     setRandomTagsPage(Math.floor(Math.random() * MAX_TAG_PAGE));
     setRandomTracksPage(
       Math.floor(Math.random() * parseInt(tracks.data?.tracks['@attr'].totalPages ?? '10')),
     );
+    handleAddTrack();
   };
 
+  // re-search a track if no one return
   if (!tracks.isFetching && tracks.data?.tracks.track.length === 0) {
     setRandomTracksPage(
       Math.floor(Math.random() * parseInt(tracks.data.tracks['@attr'].totalPages)),
     );
+    handleAddTrack();
   }
 
   // Loading systeme
   if (tags.isFetching) return <Loading message="Loading genres..." />;
   if (tracks.isFetching) return <Loading message="Research tracks..." />;
   if (song.isFetching) return <Loading message="Getting track information..." />;
-  if (trackList.length === 0)
-    return <Loading message="Sending track informations to the player..." />;
 
   return (
     <>
