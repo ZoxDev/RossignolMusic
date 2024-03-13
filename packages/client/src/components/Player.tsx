@@ -13,13 +13,26 @@ type playerProps = {
 };
 
 const Player = (props: playerProps) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(1);
+  const storedIsPlaying = localStorage.getItem('isPlaying');
+  const storedVolume = localStorage.getItem('volume');
+
+  const [isPlaying, setIsPlaying] = useState(() => {
+    return storedIsPlaying ? JSON.parse(storedIsPlaying) : false;
+  });
+  const [volume, setVolume] = useState(() => {
+    return storedVolume ? parseFloat(storedVolume) : 1;
+  });
   const [volumeHide, setVolumeHide] = useState(true);
 
-  const handleVolumeChange = (value: number | number[]) => {
-    if (typeof value !== 'number') throw new Error("Can't get an array of numbers");
-    return setVolume(value);
+  const handleVolumeChange = (volume: number | number[]) => {
+    if (typeof volume !== 'number') throw new Error("Can't get an array of numbers");
+    setVolume(volume);
+    localStorage.setItem('volume', volume.toString());
+  };
+
+  const handleTogglePlay = () => {
+    setIsPlaying(!isPlaying);
+    localStorage.setItem('isPlaying', JSON.stringify(!isPlaying));
   };
 
   if (props.song === undefined)
@@ -35,7 +48,7 @@ const Player = (props: playerProps) => {
       />
 
       <section>
-        <button onClick={() => setIsPlaying(!isPlaying)}>{isPlaying ? 'PAUSE' : 'PLAY'}</button>
+        <button onClick={handleTogglePlay}>{isPlaying ? 'PAUSE' : 'PLAY'}</button>
         <button onClick={props.handlePrev}>PREV</button>
         <button onClick={props.handleNext}>NEXT</button>
         <button
