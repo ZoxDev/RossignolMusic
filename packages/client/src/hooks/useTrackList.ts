@@ -1,24 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { songInfo } from './useSearchSong';
 
-const useTrackList = (song: songInfo | undefined) => {
+const useTrackList = (newSong: songInfo | undefined) => {
   const [trackList, setTrackList] = useState<Array<songInfo>>([]);
 
-  useEffect(() => {
-    if (song === undefined) return undefined;
-    return setTrackList((prevTrack) => [
-      ...prevTrack,
-      { videoId: song.videoId, durationInMS: song.durationInMS },
-    ]);
-  }, [song]);
+  if (
+    newSong !== undefined &&
+    (!trackList.length || newSong.videoId != trackList[trackList.length - 1].videoId)
+  ) {
+    setTrackList([...trackList, { videoId: newSong.videoId, durationInMS: newSong.durationInMS }]);
+  }
 
   const handleDeleteTrack = () => {
     if (trackList.length > 1) {
       return setTrackList(trackList.slice(0, -1));
     }
   };
-
-  console.log({ trackList });
 
   return { trackList, handleDeleteTrack };
 };
