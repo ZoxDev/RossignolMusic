@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 import Player from '../components/Player';
 import Loading from '../components/Loading';
+import Button from '../components/Button';
 
 const MAX_TAG_PAGE = 2000;
 const randomInitialPage = Math.floor(Math.random() * MAX_TAG_PAGE);
@@ -15,6 +16,7 @@ const randomInitialPage = Math.floor(Math.random() * MAX_TAG_PAGE);
 const RossignolView = () => {
   const [randomTagsPage, setRandomTagsPage] = useState(randomInitialPage);
   const [randomTracksPage, setRandomTracksPage] = useState(0);
+  const [option, setOption] = useState('random');
   const tags = useTags(randomTagsPage);
   const tag = useRandom(tags.data?.toptags.tag);
   const tracks = useTracks(tag?.name, randomTracksPage);
@@ -22,19 +24,26 @@ const RossignolView = () => {
   const song = useSearchSong(track);
   const { trackList, handleDeleteTrack, handleAddTrack } = useTrackList(song.data);
 
-  const handleGetRandomTrack = () => {
-    setRandomTagsPage(Math.floor(Math.random() * MAX_TAG_PAGE));
-    setRandomTracksPage(
-      Math.floor(Math.random() * parseInt(tracks.data?.tracks['@attr'].totalPages ?? '50')),
-    );
-    handleAddTrack();
-  };
-
-  const handleSimilarTrack = () => {
-    setRandomTracksPage(
-      Math.floor(Math.random() * parseInt(tracks.data?.tracks['@attr'].totalPages ?? '50')),
-    );
-    handleAddTrack();
+  const handlePlayTrack = () => {
+    switch (option) {
+      case 'random':
+        console.log('random song');
+        setRandomTagsPage(Math.floor(Math.random() * MAX_TAG_PAGE));
+        setRandomTracksPage(
+          Math.floor(Math.random() * parseInt(tracks.data?.tracks['@attr'].totalPages ?? '50')),
+        );
+        handleAddTrack();
+        break;
+      case 'similar':
+        console.log('similar song');
+        setRandomTracksPage(
+          Math.floor(Math.random() * parseInt(tracks.data?.tracks['@attr'].totalPages ?? '50')),
+        );
+        handleAddTrack();
+        break;
+      default:
+        throw new Error('seems like there is no option peek');
+    }
   };
 
   // re-search a track if no one return
@@ -52,16 +61,14 @@ const RossignolView = () => {
 
   return (
     <>
-    <button>GET TRACK</button>
-      <div>
-        <Player
-          song={trackList[trackList.length - 1]}
-          handlePrev={handleDeleteTrack}
-          handleNext={handleGetRandomTrack}
-        />
-      </div>
-      <button onClick={handleGetRandomTrack}>RANDOM TRACK</button>
-      <button onClick={handleSimilarTrack}>SIMILAR TRACK</button>
+      <Button text="GET TRACK" clickFunction={handlePlayTrack} />
+      <Player
+        song={trackList[trackList.length - 1]}
+        handlePrev={handleDeleteTrack}
+        handleNext={handlePlayTrack}
+      />
+      <Button text="RANDOM TRACK" clickFunction={() => setOption('random')} />
+      <Button text="SIMILAR TRACK" clickFunction={() => setOption('similar')} />
     </>
   );
 };
