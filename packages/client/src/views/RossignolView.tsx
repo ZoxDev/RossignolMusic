@@ -19,7 +19,12 @@ const RossignolView = () => {
   const [option, setOption] = useState('random');
   const tags = useTags(randomTagsPage);
   const tag = useRandom(tags.data?.toptags.tag);
-  const tracks = useTracks(tag?.name, randomTracksPage);
+  const {
+    list: tagList,
+    handleDeleteFromList: handleDeleteTag,
+    handleAddToList: handleAddTag,
+  } = useTrackList(tag);
+  const tracks = useTracks(tagList[tagList.length - 1]?.name, randomTracksPage);
   const track = useRandom(tracks.data?.tracks.track);
   const song = useSearchSong(track);
   const {
@@ -35,6 +40,7 @@ const RossignolView = () => {
         setRandomTracksPage(
           Math.floor(Math.random() * parseInt(tracks.data?.tracks['@attr'].totalPages ?? '50')),
         );
+        handleAddTag();
         handleAddTrack();
         break;
       case 'similar':
@@ -46,6 +52,11 @@ const RossignolView = () => {
       default:
         throw new Error('seems like there is no option peek');
     }
+  };
+
+  const handlePrevTrack = () => {
+    handleDeleteTag();
+    handleDeleteTrack();
   };
 
   // re-search a track if no one return
@@ -66,7 +77,7 @@ const RossignolView = () => {
       <Button text="GET TRACK" clickFunction={handlePlayTrack} />
       <Player
         song={trackList[trackList.length - 1]}
-        handlePrev={handleDeleteTrack}
+        handlePrev={handlePrevTrack}
         handleNext={handlePlayTrack}
       />
       <Button text="RANDOM TRACK" clickFunction={() => setOption('random')} />
