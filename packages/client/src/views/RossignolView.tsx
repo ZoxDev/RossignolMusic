@@ -2,7 +2,7 @@ import useTags from '../hooks/useTags';
 import useTracks from '../hooks/useTracks';
 import useRandom from '../hooks/useRandom';
 import useSearchSong from '../hooks/useSearchSong';
-import useTrackList from '../hooks/useTrackList';
+import useList from '../hooks/useList';
 
 import { useState } from 'react';
 
@@ -23,7 +23,7 @@ const RossignolView = () => {
     list: tagList,
     handleDeleteFromList: handleDeleteTag,
     handleAddToList: handleAddTag,
-  } = useTrackList(tag);
+  } = useList(tag);
   const tracks = useTracks(tagList[tagList.length - 1]?.name, randomTracksPage);
   const track = useRandom(tracks.data?.tracks.track);
   const song = useSearchSong(track);
@@ -31,7 +31,7 @@ const RossignolView = () => {
     list: trackList,
     handleDeleteFromList: handleDeleteTrack,
     handleAddToList: handleAddTrack,
-  } = useTrackList(song.data);
+  } = useList(song.data);
 
   const handlePlayTrack = () => {
     switch (option) {
