@@ -27,7 +27,6 @@ const RossignolView = () => {
   const handlePlayTrack = () => {
     switch (option) {
       case 'random':
-        console.log('random song');
         setRandomTagsPage(Math.floor(Math.random() * MAX_TAG_PAGE));
         setRandomTracksPage(
           Math.floor(Math.random() * parseInt(tracks.data?.tracks['@attr'].totalPages ?? '50')),
@@ -35,7 +34,6 @@ const RossignolView = () => {
         handleAddTrack();
         break;
       case 'similar':
-        console.log('similar song');
         setRandomTracksPage(
           Math.floor(Math.random() * parseInt(tracks.data?.tracks['@attr'].totalPages ?? '50')),
         );
