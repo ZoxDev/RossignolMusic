@@ -22,7 +22,11 @@ const RossignolView = () => {
   const tracks = useTracks(tag?.name, randomTracksPage);
   const track = useRandom(tracks.data?.tracks.track);
   const song = useSearchSong(track);
-  const { trackList, handleDeleteTrack, handleAddTrack } = useTrackList(song.data);
+  const {
+    list: trackList,
+    handleDeleteFromList: handleDeleteTrack,
+    handleAddToList: handleAddTrack,
+  } = useTrackList(song.data);
 
   const handlePlayTrack = () => {
     switch (option) {
