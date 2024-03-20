@@ -8,8 +8,8 @@ type PropsButton = {
 
 const Button = (props: PropsButton) => {
   return (
-    <button onClick={props.clickFunction}>
-      {props.text}
+    <button className="button_container quicksand-normal" onClick={props.clickFunction}>
+      <p>{props.text}</p>
       {props.svg}
     </button>
   );
