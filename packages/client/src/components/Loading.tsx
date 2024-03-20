@@ -1,3 +1,5 @@
+import '../styles/Loading.styles.css';
+
 type Loading = {
   message: string;
 };
@@ -5,7 +7,9 @@ type Loading = {
 const Loading = (props: Loading) => {
   return (
     <>
-      <h1>{props.message}</h1>
+      <span className="loading_container">
+        <h1 className=" quicksand-normal">{props.message}</h1>
+      </span>
     </>
   );
 };
