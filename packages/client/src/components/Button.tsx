@@ -6,16 +6,26 @@ type PropsButton = {
   imgName?: string;
   imgSize?: number;
   imgAlt?: string;
+  keyCode?: string;
 };
 
 const Button = (props: PropsButton) => {
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.code === props.keyCode) {
+      props.clickFunction();
+    }
+  };
+
+  
+  window.addEventListener('keydown', handleKeyDown);
+
   return (
     <button className="button_container quicksand-normal" onClick={props.clickFunction}>
       <p>{props.text}</p>
       {props.imgName ? (
         <img
           alt={props.imgAlt}
-          style={{ width: `${props.imgSize}`, height: `${props.imgSize}` }}
+          style={{ width: props.imgSize, height: props.imgSize }}
           src={`../../public/${props.imgName}`}
         />
       ) : (
