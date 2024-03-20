@@ -9,8 +9,19 @@ iframe {
   z-index: -1;
 }
 
-.button_player_container {
+.player_button_container {
   display: flex;
   gap: 10px;
   width: 100%;
+}
+
+.player_volume_slider {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+  background-color: white;
+
+  border-radius: 10px;
+  border: solid black;
+  border-width: 4px 4px 8px 4px;
 }

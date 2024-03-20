@@ -24,7 +24,6 @@ const Player = (props: playerProps) => {
   const [volume, setVolume] = useState(() => {
     return storedVolume ? parseFloat(storedVolume) : 1;
   });
-  const [volumeHide, setVolumeHide] = useState(true);
 
   const handleVolumeChange = (volume: number | number[]) => {
     if (typeof volume !== 'number') throw new Error("Can't get an array of numbers");
@@ -49,7 +48,7 @@ const Player = (props: playerProps) => {
         onEnded={props.handleNext}
       />
 
-      <div className="button_player_container">
+      <div className="player_button_container">
         <Button clickFunction={handleTogglePlay} text={isPlaying ? 'PAUSE' : 'PLAY'} />
         <Button clickFunction={props.handlePrev} text="PREV" />
         <Button clickFunction={props.handleNext} text="NEXT" />
@@ -58,19 +57,16 @@ const Player = (props: playerProps) => {
           text="COPYLINK"
         />
       </div>
-      <button onMouseEnter={() => setVolumeHide(false)} onMouseLeave={() => setVolumeHide(true)}>
-        {volumeHide ? (
-          <p>VOLUME</p>
-        ) : (
-          <Slider
-            aria-label="volume"
-            max={1}
-            step={0.01}
-            onChange={(_, value) => handleVolumeChange(value)}
-            value={volume}
-          />
-        )}
-      </button>
+      <div className="player_volume_slider">
+        <img src="../../public/volume.svg" />
+        <Slider
+          aria-label="volume"
+          max={1}
+          step={0.01}
+          onChange={(_, value) => handleVolumeChange(value)}
+          value={volume}
+        />
+      </div>
     </>
   );
 };
