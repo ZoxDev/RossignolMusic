@@ -53,20 +53,20 @@ const Player = (props: playerProps) => {
 
       <div className="player_button_container">
         <Button
-          clickFunction={handleTogglePlay}
-          text={isPlaying ? 'PAUSE' : 'PLAY'}
-          imgName={isPlaying ? 'pause.svg' : 'play.svg'}
-          imgAlt={isPlaying ? 'pausing icon' : 'playing icon'}
-          imgSize={30}
-          keyCode="Space"
-        />
-        <Button
           clickFunction={props.handlePrev}
           text="PREV"
           imgName="prev.svg"
           imgAlt="prev song icon"
           imgSize={30}
           keyCode="ArrowLeft"
+        />
+        <Button
+          clickFunction={handleTogglePlay}
+          text={isPlaying ? 'PAUSE' : 'PLAY'}
+          imgName={isPlaying ? 'pause.svg' : 'play.svg'}
+          imgAlt={isPlaying ? 'pausing icon' : 'playing icon'}
+          imgSize={30}
+          keyCode="Space"
         />
         <Button
           clickFunction={props.handleNext}
