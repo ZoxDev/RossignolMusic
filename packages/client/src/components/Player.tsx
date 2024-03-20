@@ -58,10 +58,11 @@ const Player = (props: playerProps) => {
         />
       </div>
       <div className="player_volume_slider">
-        <img src="../../public/volume.svg" />
+        <img style={{ width: '24px', height: '24px' }} src="../../public/volume.svg" />
         <Slider
           aria-label="volume"
           max={1}
+          sx={{ color: 'black' }}
           step={0.01}
           onChange={(_, value) => handleVolumeChange(value)}
           value={volume}

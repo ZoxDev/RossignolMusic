@@ -17,8 +17,9 @@ iframe {
 
 .player_volume_slider {
   display: flex;
+  align-items: center;
   gap: 20px;
-  padding: 10px;
+  padding: 7.5px;
   background-color: white;
 
   border-radius: 10px;
