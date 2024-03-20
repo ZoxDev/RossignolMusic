@@ -46,17 +46,24 @@ const Player = (props: playerProps) => {
         playing={isPlaying}
         volume={volume}
         onEnded={props.handleNext}
+        style={{ width: '100%', height: '100%' }}
       />
 
       <div className="player_button_container">
-        <Button clickFunction={handleTogglePlay} text={isPlaying ? 'PAUSE' : 'PLAY'} />
-        <Button clickFunction={props.handlePrev} text="PREV" />
-        <Button clickFunction={props.handleNext} text="NEXT" />
+        <Button
+          clickFunction={handleTogglePlay}
+          text={isPlaying ? 'PAUSE' : 'PLAY'}
+          keyCode="Space"
+        />
+        <Button clickFunction={props.handlePrev} text="PREV" keyCode="ArrowLeft" />
+        <Button clickFunction={props.handleNext} text="NEXT" keyCode="ArrowRight" />
         <Button
           clickFunction={() => navigator.clipboard.writeText(`${BASE_URL}${props.song?.videoId}`)}
           text="COPYLINK"
+          keyCode='KeyC'
         />
       </div>
+
       <div className="player_volume_slider">
         <img style={{ width: '24px', height: '24px' }} src="../../public/volume.svg" />
         <Slider
