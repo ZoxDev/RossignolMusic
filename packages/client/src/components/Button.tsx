@@ -12,11 +12,15 @@ const Button = (props: PropsButton) => {
   return (
     <button className="button_container quicksand-normal" onClick={props.clickFunction}>
       <p>{props.text}</p>
-      <img
-        alt={props.imgAlt}
-        style={{ width: `${props.imgSize}`, height: `${props.imgSize}` }}
-        src={`../../public/${props.imgName}`}
-      />
+      {props.imgName ? (
+        <img
+          alt={props.imgAlt}
+          style={{ width: `${props.imgSize}`, height: `${props.imgSize}` }}
+          src={`../../public/${props.imgName}`}
+        />
+      ) : (
+        ''
+      )}
     </button>
   );
 };
