@@ -10,6 +10,8 @@ import Player from '../components/Player';
 import Loading from '../components/Loading';
 import Button from '../components/Button';
 
+import '../styles/Rossigol_view.styles.css';
+
 const MAX_TAG_PAGE = 2000;
 const randomInitialPage = Math.floor(Math.random() * MAX_TAG_PAGE);
 
@@ -74,14 +76,16 @@ const RossignolView = () => {
 
   return (
     <>
-      <Button text="GET TRACK" clickFunction={handlePlayTrack} />
-      <Player
-        song={trackList[trackList.length - 1]}
-        handlePrev={handlePrevTrack}
-        handleNext={handlePlayTrack}
-      />
-      <Button text="RANDOM TRACK" clickFunction={() => setOption('random')} />
-      <Button text="SIMILAR TRACK" clickFunction={() => setOption('similar')} />
+      <section className="rossignol_view">
+        <Button text="GET TRACK" clickFunction={handlePlayTrack} />
+        <Player
+          song={trackList[trackList.length - 1]}
+          handlePrev={handlePrevTrack}
+          handleNext={handlePlayTrack}
+        />
+        <Button text="RANDOM TRACK" clickFunction={() => setOption('random')} />
+        <Button text="SIMILAR TRACK" clickFunction={() => setOption('similar')} />
+      </section>
     </>
   );
 };

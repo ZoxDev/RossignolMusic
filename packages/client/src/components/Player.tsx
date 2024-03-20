@@ -3,6 +3,8 @@ import ReactPlayer from 'react-player';
 import { useState } from 'react';
 import { Slider } from '@mui/material';
 import Loading from './Loading';
+import Button from './Button';
+import '../styles/Player.styles.css';
 
 const BASE_URL = `https://www.youtube.com/watch?v=`;
 
@@ -47,34 +49,28 @@ const Player = (props: playerProps) => {
         onEnded={props.handleNext}
       />
 
-      <section>
-        <button onClick={handleTogglePlay}>{isPlaying ? 'PAUSE' : 'PLAY'}</button>
-        <button onClick={props.handlePrev}>PREV</button>
-        <button onClick={props.handleNext}>NEXT</button>
-        <button
-          style={{ minWidth: '10%' }}
-          onMouseEnter={() => setVolumeHide(false)}
-          onMouseLeave={() => setVolumeHide(true)}
-        >
-          {volumeHide ? (
-            <p>VOLUME</p>
-          ) : (
-            <Slider
-              aria-label="volume"
-              max={1}
-              step={0.01}
-              onChange={(_, value) => handleVolumeChange(value)}
-              value={volume}
-            />
-          )}
-        </button>
-        <button
-          disabled={props.song === undefined}
-          onClick={() => navigator.clipboard.writeText(`${BASE_URL}${props.song?.videoId}`)}
-        >
-          COPY LINK
-        </button>
-      </section>
+      <div className="button_player_container">
+        <Button clickFunction={handleTogglePlay} text={isPlaying ? 'PAUSE' : 'PLAY'} />
+        <Button clickFunction={props.handlePrev} text="PREV" />
+        <Button clickFunction={props.handleNext} text="NEXT" />
+        <Button
+          clickFunction={() => navigator.clipboard.writeText(`${BASE_URL}${props.song?.videoId}`)}
+          text="COPYLINK"
+        />
+      </div>
+      <button onMouseEnter={() => setVolumeHide(false)} onMouseLeave={() => setVolumeHide(true)}>
+        {volumeHide ? (
+          <p>VOLUME</p>
+        ) : (
+          <Slider
+            aria-label="volume"
+            max={1}
+            step={0.01}
+            onChange={(_, value) => handleVolumeChange(value)}
+            value={volume}
+          />
+        )}
+      </button>
     </>
   );
 };
