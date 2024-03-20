@@ -8,8 +8,7 @@
 .button_container {
   width: 100%;
   padding: 5px;
-  border: solid black;
-  border-width: 2px 2px 2px 2px;
+  border: 2px solid black;
   border-radius: 5px;
   background-color: white;
   display: flex;

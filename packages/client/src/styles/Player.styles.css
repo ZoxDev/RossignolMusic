@@ -1,7 +1,5 @@
 iframe {
-  border-radius: 5px;
-  border: solid black;
-  border-width: 2px 2px 2px 2px;
+  border: 2px solid black;
 
   /* Weird sizing but seem's no choice react-player is weird */
   width: 99.2%;
@@ -24,7 +22,5 @@ iframe {
   padding: 7.5px;
   background-color: white;
 
-  border-radius: 5px;
-  border: solid black;
-  border-width: 2px 2px 2px 2px;
+  border: 2px solid black;
 }
