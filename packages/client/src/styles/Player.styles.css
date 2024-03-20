@@ -1,11 +1,11 @@
 iframe {
-  border-radius: 10px;
+  border-radius: 5px;
   border: solid black;
-  border-width: 4px 4px 8px 4px;
+  border-width: 2px 2px 2px 2px;
 
   /* Weird sizing but seem's no choice react-player is weird */
-  width: 98.9%;
-  height: 97%;
+  width: 99.2%;
+  height: 99%;
 
   /* for user can't interact the yt palyer */
   z-index: -1;
@@ -24,7 +24,7 @@ iframe {
   padding: 7.5px;
   background-color: white;
 
-  border-radius: 10px;
+  border-radius: 5px;
   border: solid black;
-  border-width: 4px 4px 8px 4px;
+  border-width: 2px 2px 2px 2px;
 }
