@@ -83,8 +83,18 @@ const RossignolView = () => {
           handlePrev={handlePrevTrack}
           handleNext={handlePlayTrack}
         />
-        <Button text="RANDOM TRACK" clickFunction={() => setOption('random')} />
-        <Button text="SIMILAR TRACK" clickFunction={() => setOption('similar')} />
+        <div className="rossignol_view_option_container">
+          <Button
+            text="RANDOM TRACK"
+            clickFunction={() => setOption('random')}
+            imgName={option === 'random' ? 'valid.svg' : 'nonvalid.svg'}
+          />
+          <Button
+            text="SIMILAR TRACK"
+            clickFunction={() => setOption('similar')}
+            imgName={option === 'similar' ? 'valid.svg' : 'nonvalid.svg'}
+          />
+        </div>
       </section>
     </>
   );

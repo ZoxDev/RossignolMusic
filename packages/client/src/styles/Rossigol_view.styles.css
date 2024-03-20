@@ -3,3 +3,8 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.rossignol_view_option_container {
+  display: flex;
+  gap: 10px;
+}
