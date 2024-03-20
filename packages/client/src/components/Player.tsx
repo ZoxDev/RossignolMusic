@@ -41,13 +41,15 @@ const Player = (props: playerProps) => {
 
   return (
     <>
-      <ReactPlayer
-        url={`${BASE_URL}${props.song.videoId}`}
-        playing={isPlaying}
-        volume={volume}
-        onEnded={props.handleNext}
-        style={{ width: '100%', height: '100%' }}
-      />
+      <div className="player_reactplayer_container">
+        <ReactPlayer
+          url={`${BASE_URL}${props.song.videoId}`}
+          playing={isPlaying}
+          volume={volume}
+          onEnded={props.handleNext}
+          style={{ width: '100%', height: '100%' }}
+        />
+      </div>
 
       <div className="player_button_container">
         <Button
@@ -60,7 +62,7 @@ const Player = (props: playerProps) => {
         <Button
           clickFunction={() => navigator.clipboard.writeText(`${BASE_URL}${props.song?.videoId}`)}
           text="COPYLINK"
-          keyCode='KeyC'
+          keyCode="KeyC"
         />
       </div>
 
