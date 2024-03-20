@@ -5,6 +5,13 @@
   font-weight: 700;
   font-style: normal;
 }
+.quicksand-normal {
+  font-family: 'Quicksand', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
 * {
   margin: 0px;
   padding: 0px;
