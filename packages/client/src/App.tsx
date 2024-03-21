@@ -11,7 +11,7 @@ function App() {
       <main>
         <div className="logo">
           <h1 className="quicksand-bold">Rossignol</h1>
-          <img src="../public/BIRD.svg"></img>
+          <img src="/BIRD.svg"></img>
         </div>
         <section className="app">
           <RossignolView />
