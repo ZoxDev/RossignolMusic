@@ -90,7 +90,7 @@ const Player = (props: playerProps) => {
           style={
             smallScreen ? { width: '20px', height: '20px' } : { width: '24px', height: '24px' }
           }
-          src="../../public/volume.svg"
+          src="/volume.svg"
         />
         <Slider
           aria-label="volume"

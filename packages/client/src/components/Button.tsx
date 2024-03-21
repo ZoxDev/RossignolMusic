@@ -21,7 +21,7 @@ const Button = (props: PropsButton) => {
     <button className="button_container quicksand-normal" onClick={props.clickFunction}>
       <p>{props.text}</p>
       {props.imgName ? (
-        <img className="button_icon" alt={props.imgAlt} src={`../../public/${props.imgName}`} />
+        <img className="button_icon" alt={props.imgAlt} src={`/${props.imgName}`} />
       ) : (
         ''
       )}
