@@ -41,7 +41,7 @@ const Player = (props: playerProps) => {
   };
 
   if (props.song === undefined)
-    return <Loading message="Click or press enter for getting a track..." />;
+    return <Loading message="Click or press enter for getting a song..." />;
 
   return (
     <>

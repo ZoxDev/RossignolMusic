@@ -71,14 +71,15 @@ const RossignolView = () => {
 
   // Loading systeme
   if (tags.isFetching) return <Loading message="Loading genres..." />;
-  if (tracks.isFetching) return <Loading message="Research tracks..." />;
-  if (song.isFetching) return <Loading message="Getting track information..." />;
+  if (tracks.isFetching) return <Loading message="Research songs..." />;
+  if (song.isFetching)
+    return <Loading message="Getting song information... (It can takes few minutes)" />;
 
   return (
     <>
       <section className="rossignol_view">
         <Button
-          text="GET TRACK"
+          text="GET SONG"
           clickFunction={handlePlayTrack}
           imgName="enter.svg"
           imgAlt="enter key"
