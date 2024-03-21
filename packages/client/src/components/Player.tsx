@@ -5,6 +5,7 @@ import { Slider } from '@mui/material';
 import Loading from './Loading';
 import Button from './Button';
 import '../styles/Player.styles.css';
+import { useMediaQuery } from '@mui/material';
 
 const BASE_URL = `https://www.youtube.com/watch?v=`;
 
@@ -17,6 +18,8 @@ type playerProps = {
 const Player = (props: playerProps) => {
   const storedIsPlaying = localStorage.getItem('isPlaying');
   const storedVolume = localStorage.getItem('volume');
+
+  const smallScreen = useMediaQuery('(max-width:680px)');
 
   const [isPlaying, setIsPlaying] = useState(() => {
     return storedIsPlaying ? JSON.parse(storedIsPlaying) : false;
@@ -32,6 +35,7 @@ const Player = (props: playerProps) => {
   };
 
   const handleTogglePlay = () => {
+    // SPAM SPACE BUG
     setIsPlaying(!isPlaying);
     localStorage.setItem('isPlaying', JSON.stringify(!isPlaying));
   };
@@ -41,15 +45,14 @@ const Player = (props: playerProps) => {
 
   return (
     <>
-      <div className="player_reactplayer_container">
-        <ReactPlayer
-          url={`${BASE_URL}${props.song.videoId}`}
-          playing={isPlaying}
-          volume={volume}
-          onEnded={props.handleNext}
-          style={{ width: '100%', height: '100%' }}
-        />
-      </div>
+      <ReactPlayer
+        url={`${BASE_URL}${props.song.videoId}`}
+        playing={isPlaying}
+        volume={volume}
+        onEnded={props.handleNext}
+        // Use media query and adapt the size
+        width={smallScreen ? '' : '640px'}
+      />
 
       <div className="player_button_container">
         <Button
@@ -57,7 +60,6 @@ const Player = (props: playerProps) => {
           text="PREV"
           imgName="prev.svg"
           imgAlt="prev song icon"
-          imgSize={30}
           keyCode="ArrowLeft"
         />
         <Button
@@ -65,7 +67,6 @@ const Player = (props: playerProps) => {
           text={isPlaying ? 'PAUSE' : 'PLAY'}
           imgName={isPlaying ? 'pause.svg' : 'play.svg'}
           imgAlt={isPlaying ? 'pausing icon' : 'playing icon'}
-          imgSize={30}
           keyCode="Space"
         />
         <Button
@@ -74,7 +75,6 @@ const Player = (props: playerProps) => {
           keyCode="ArrowRight"
           imgName="next.svg"
           imgAlt="next song icon"
-          imgSize={30}
         />
         <Button
           clickFunction={() => navigator.clipboard.writeText(`${BASE_URL}${props.song?.videoId}`)}
@@ -82,16 +82,20 @@ const Player = (props: playerProps) => {
           keyCode="KeyC"
           imgName="link.svg"
           imgAlt="copy link icon"
-          imgSize={30}
         />
       </div>
 
       <div className="player_volume_slider">
-        <img style={{ width: '24px', height: '24px' }} src="../../public/volume.svg" />
+        <img
+          style={
+            smallScreen ? { width: '20px', height: '20px' } : { width: '24px', height: '24px' }
+          }
+          src="../../public/volume.svg"
+        />
         <Slider
           aria-label="volume"
           max={1}
-          sx={{ color: 'black' }}
+          sx={{ color: 'black', height: '1px' }}
           step={0.01}
           onChange={(_, value) => handleVolumeChange(value)}
           value={volume}

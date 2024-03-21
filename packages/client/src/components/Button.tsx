@@ -4,7 +4,6 @@ type PropsButton = {
   clickFunction: () => void;
   text: string;
   imgName?: string;
-  imgSize?: number;
   imgAlt?: string;
   keyCode?: string;
 };
@@ -16,18 +15,13 @@ const Button = (props: PropsButton) => {
     }
   };
 
-  
   window.addEventListener('keydown', handleKeyDown);
 
   return (
     <button className="button_container quicksand-normal" onClick={props.clickFunction}>
       <p>{props.text}</p>
       {props.imgName ? (
-        <img
-          alt={props.imgAlt}
-          style={{ width: props.imgSize, height: props.imgSize }}
-          src={`../../public/${props.imgName}`}
-        />
+        <img className="button_icon" alt={props.imgAlt} src={`../../public/${props.imgName}`} />
       ) : (
         ''
       )}

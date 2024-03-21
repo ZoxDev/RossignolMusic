@@ -25,3 +25,19 @@ p {
   font-weight: 500;
   font-size: 18px;
 }
+
+.button_icon {
+  width: 30px;
+  height: 30px;
+}
+
+@media screen and (max-width: 680px) {
+  p {
+    font-size: 12px;
+  }
+
+  .button_icon {
+    width: 15px;
+    height: 15px;
+  }
+}
