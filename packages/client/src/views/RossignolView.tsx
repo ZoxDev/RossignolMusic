@@ -81,7 +81,6 @@ const RossignolView = () => {
           text="GET TRACK"
           clickFunction={handlePlayTrack}
           imgName="enter.svg"
-          imgSize={30}
           imgAlt="enter key"
           keyCode="Enter"
         />
@@ -96,7 +95,6 @@ const RossignolView = () => {
             clickFunction={() => setOption('random')}
             imgName={option === 'random' ? 'valid.svg' : 'nonvalid.svg'}
             imgAlt={option === 'random' ? 'option random checked' : 'option random unchecked'}
-            imgSize={30}
             keyCode="KeyR"
           />
           <Button
@@ -104,7 +102,6 @@ const RossignolView = () => {
             clickFunction={() => setOption('similar')}
             imgName={option === 'similar' ? 'valid.svg' : 'nonvalid.svg'}
             imgAlt={option === 'similar' ? 'option similar checked' : 'option similar unchecked'}
-            imgSize={30}
             keyCode="KeyS"
           />
         </div>
