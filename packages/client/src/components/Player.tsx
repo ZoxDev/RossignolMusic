@@ -77,7 +77,7 @@ const Player = (props: playerProps) => {
           imgAlt="next song icon"
         />
         <Button
-          clickFunction={() => navigator.clipboard.writeText(`${BASE_URL}${props.song?.videoId}`)}
+          clickFunction={() => navigator.clipboard.writeText(`/${props.song?.videoId}`)}
           text="COPYLINK"
           keyCode="KeyC"
           imgName="link.svg"
