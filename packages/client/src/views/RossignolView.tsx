@@ -73,7 +73,7 @@ const RossignolView = () => {
   if (tags.isFetching) return <Loading message="Loading genres..." />;
   if (tracks.isFetching) return <Loading message="Research songs..." />;
   if (song.isFetching)
-    return <Loading message="Getting song information... (It can takes few minutes)" />;
+    return <Loading message="Getting song information... (It can take few minutes)" />;
 
   return (
     <>
