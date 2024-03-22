@@ -78,13 +78,6 @@ const RossignolView = () => {
   return (
     <>
       <section className="rossignol_view">
-        <Button
-          text="GET SONG"
-          clickFunction={handlePlayTrack}
-          imgName="enter.svg"
-          imgAlt="enter key"
-          keyCode="Enter"
-        />
         <Player
           song={trackList[trackList.length - 1]}
           handlePrev={handlePrevTrack}

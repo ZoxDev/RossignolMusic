@@ -2,10 +2,10 @@ import { songInfo } from '../hooks/useSearchSong';
 import ReactPlayer from 'react-player';
 import { useState } from 'react';
 import { Slider } from '@mui/material';
-import Loading from './Loading';
 import Button from './Button';
 import '../styles/Player.styles.css';
 import { useMediaQuery } from '@mui/material';
+import Loading from './Loading';
 
 const BASE_URL = `https://www.youtube.com/watch?v=`;
 
@@ -21,7 +21,7 @@ const Player = (props: playerProps) => {
 
   const smallScreen = useMediaQuery('(max-width:680px)');
 
-  const [isPlaying, setIsPlaying] = useState(() => {
+  const [isPlaying, setIsPlaying] = useState<boolean>(() => {
     return storedIsPlaying ? JSON.parse(storedIsPlaying) : false;
   });
   const [volume, setVolume] = useState(() => {
@@ -40,8 +40,10 @@ const Player = (props: playerProps) => {
     localStorage.setItem('isPlaying', JSON.stringify(!isPlaying));
   };
 
-  if (props.song === undefined)
-    return <Loading message="Click or press enter for getting a song..." />;
+  if (props.song === undefined) {
+    props.handleNext();
+    return <Loading message="Waiting for song to be displayed" />;
+  }
 
   return (
     <>
