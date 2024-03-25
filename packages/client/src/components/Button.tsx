@@ -2,10 +2,12 @@ import '../styles/Button.styles.css';
 
 type PropsButton = {
   clickFunction: () => void;
-  text: string;
+  text?: string;
   imgName?: string;
   imgAlt?: string;
   keyCode?: string;
+  styled: boolean;
+  children?: string | JSX.Element;
 };
 
 const Button = (props: PropsButton) => {
@@ -18,14 +20,20 @@ const Button = (props: PropsButton) => {
   window.addEventListener('keydown', handleKeyDown);
 
   return (
-    <button className="button_container quicksand-normal" onClick={props.clickFunction}>
-      <p>{props.text}</p>
-      {props.imgName ? (
-        <img className="button_icon" alt={props.imgAlt} src={`/${props.imgName}`} />
+    <>
+      {props.styled ? (
+        <button className="button_container quicksand-normal" onClick={props.clickFunction}>
+          <p>{props.text}</p>
+          {props.imgName ? (
+            <img className="button_icon" alt={props.imgAlt} src={`/${props.imgName}`} />
+          ) : (
+            ''
+          )}
+        </button>
       ) : (
-        ''
+        <button onClick={props.clickFunction}>{props.children}</button>
       )}
-    </button>
+    </>
   );
 };
 

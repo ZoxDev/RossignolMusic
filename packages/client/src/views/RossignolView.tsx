@@ -90,6 +90,7 @@ const RossignolView = () => {
             imgName={option === 'random' ? 'valid.svg' : 'nonvalid.svg'}
             imgAlt={option === 'random' ? 'option random checked' : 'option random unchecked'}
             keyCode="KeyR"
+            styled={true}
           />
           <Button
             text="SIMILAR TRACK"
@@ -97,6 +98,7 @@ const RossignolView = () => {
             imgName={option === 'similar' ? 'valid.svg' : 'nonvalid.svg'}
             imgAlt={option === 'similar' ? 'option similar checked' : 'option similar unchecked'}
             keyCode="KeyS"
+            styled={true}
           />
         </div>
       </section>
