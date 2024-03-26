@@ -47,7 +47,7 @@ const Player = (props: playerProps) => {
 
   return (
     <>
-      <div className="relative w-player flex flex-col rounded-xl shadow-player-light bg-player-light-background border border-player-light-border dark:shadow-player-dark dark:bg-player-dark-background dark:border-player-dark-border dark:backdrop-blur-xl">
+      <div className="relative w-player flex flex-col rounded-md shadow-player-light bg-player-light-background border border-player-light-border dark:shadow-player-dark dark:bg-player-dark-background dark:border-player-dark-border dark:backdrop-blur-xl">
         <div className="px-10 pt-10 pb-4 flex items-center z-50">
           <div
             data-amplitude-song-info="cover_art_url"
