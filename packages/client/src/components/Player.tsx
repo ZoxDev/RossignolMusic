@@ -12,7 +12,6 @@ const BASE_URL = `https://www.youtube.com/watch?v=`;
 type playerProps = {
   handlePrev: () => void;
   handleNext: () => void;
-  handleReplay: () => void;
   song?: songInfo;
 };
 

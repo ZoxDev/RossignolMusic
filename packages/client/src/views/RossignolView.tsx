@@ -82,7 +82,6 @@ const RossignolView = () => {
           song={trackList[trackList.length - 1]}
           handlePrev={handlePrevTrack}
           handleNext={handlePlayTrack}
-          handleReplay={handleReplayTrack}
         />
         <div className="rossignol_view_option_container">
           <Button
