@@ -57,9 +57,10 @@ const Player = (props: playerProps) => {
               url={`${BASE_URL}${props.song.videoId}`}
               playing={isPlaying}
               volume={volume}
-              onEnded={isReplay ? props.handleReplay : props.handleNext}
+              onEnded={props.handleNext}
               width={'100%'}
               height={'100%'}
+              loop={isReplay}
             />
           </div>
         </div>
