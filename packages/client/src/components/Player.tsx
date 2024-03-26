@@ -1,7 +1,9 @@
-import { songInfo } from '../hooks/useSearchSong';
-import ReactPlayer from 'react-player';
 import { useState } from 'react';
+import { songInfo } from '../hooks/useSearchSong';
+
 import { Slider } from '@mui/material';
+
+import ReactPlayer from 'react-player';
 import Button from './Button';
 import Loading from './Loading';
 
