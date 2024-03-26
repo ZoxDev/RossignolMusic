@@ -50,4 +50,5 @@ main {
   justify-content: center;
   flex-direction: column;
   height: 75%;
+  width: 100%;
 }

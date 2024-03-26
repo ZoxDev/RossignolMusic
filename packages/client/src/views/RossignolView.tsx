@@ -61,6 +61,12 @@ const RossignolView = () => {
     handleDeleteTrack();
   };
 
+  const handleReplayTrack = () => {
+    // Try to do a replay track function
+    handleAddTrack();
+    handleDeleteTrack();
+  };
+
   // re-search a track if no one return
   if (!tracks.isFetching && tracks.data?.tracks.track.length === 0) {
     setRandomTracksPage(
@@ -82,6 +88,7 @@ const RossignolView = () => {
           song={trackList[trackList.length - 1]}
           handlePrev={handlePrevTrack}
           handleNext={handlePlayTrack}
+          handleReplay={handleReplayTrack}
         />
         <div className="rossignol_view_option_container">
           <Button

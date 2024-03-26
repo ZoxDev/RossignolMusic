@@ -2,6 +2,14 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  width: 45vw;
+}
+
+@media screen and (max-width: 900px) {
+  .rossignol_view {
+    width: 90vw;
+  }
 }
 
 .rossignol_view_option_container {
