@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { songInfo } from '../hooks/useSearchSong';
 
 import { Slider } from '@mui/material';
 
@@ -46,11 +45,11 @@ const Player = (props: playerProps) => {
 
   return (
     <>
-      <div className="relative w-player flex flex-col rounded-md shadow-player-light bg-player-light-background border border-player-light-border dark:shadow-player-dark dark:bg-player-dark-background dark:border-player-dark-border dark:backdrop-blur-xl">
+      <div className="relative w-player flex flex-col rounded-md bg-gray-900 border-2 border-gray-800 border-opacity-30">
         <div className="px-10 pt-10 pb-4 flex items-center z-50">
           <div
             data-amplitude-song-info="cover_art_url"
-            className="w-24 h-24 rounded-md mr-6 border border-bg-player-light-background dark:border-cover-dark-border"
+            className="w-24 h-24 md:w-44 md:h-44 xl:w-52 xl:h-52 rounded-md border-2 border-gray-700 border-opacity-30"
           >
             <ReactPlayer
               url={`${BASE_URL}${props.song.videoId}`}
@@ -61,6 +60,10 @@ const Player = (props: playerProps) => {
               height={'100%'}
               loop={isReplay}
             />
+          </div>
+          <div className="h-24 md:h-44 xl:h-52 flex flex-col justify-evenly ml-10">
+            <p className="text-bold">{props.song.artist}</p>
+            <p className="text-normal">{props.song.title}</p>
           </div>
         </div>
         <div className="w-full flex flex-row gap-5 px-10 pb-6 z-50">
@@ -86,7 +89,7 @@ const Player = (props: playerProps) => {
             value={volume}
           />
         </div>
-        <div className="h-control-panel px-10 rounded-b-xl bg-control-panel-light-background border-t border-gray-200 flex items-center justify-between z-50 dark:bg-control-panel-dark-background dark:border-gray-900">
+        <div className="bg-gray-950 bg-opacity-20 px-10 rounded-b-xl flex items-center justify-between z-50">
           <Button clickFunction={() => setIsReplay(!isReplay)} styled={false} keyCode="KeyL">
             <svg
               width="26"
@@ -125,7 +128,7 @@ const Player = (props: playerProps) => {
               />
             </svg>
           </Button>
-          <div className="cursor-pointer amplitude-play-pause w-24 h-24 rounded-full bg-white border border-play-pause-light-border shadow-xl flex items-center justify-center dark:bg-play-pause-dark-background dark:border-play-pause-dark-border">
+          <div className="cursor-pointer bg-white bg-opacity-5 w-24 h-24 rounded-full border-4 border-gray-800 border-opacity-75 flex items-center justify-center">
             <Button clickFunction={handleTogglePlay} keyCode="Space" styled={false}>
               {isPlaying ? (
                 <svg

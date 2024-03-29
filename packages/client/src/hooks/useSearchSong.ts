@@ -5,6 +5,8 @@ import { useQuery, keepPreviousData, skipToken } from '@tanstack/react-query';
 export type songInfo = {
   videoId: string;
   durationInMS: number;
+  artist?: string;
+  title?: string;
 };
 
 const useSearchSong = (track?: Track) => {
@@ -23,6 +25,8 @@ const useSearchSong = (track?: Track) => {
           const song: songInfo = {
             videoId: data.results[0].id,
             durationInMS: data.results[0].duration.seconds * 1000,
+            artist: track.artist.name,
+            title: track.name,
           };
 
           return song;

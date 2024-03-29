@@ -17,6 +17,21 @@
   font-style: normal;
 }
 
+.text-normal {
+  font-family: 'Quicksand', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  color: white;
+}
+.text-bold {
+  font-family: 'Quicksand', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  color: white;
+}
+
 * {
   margin: 0px;
   padding: 0px;

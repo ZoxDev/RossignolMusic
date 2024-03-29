@@ -4,6 +4,8 @@ import App from './App.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <div className="dark">
+      <App />
+    </div>
   </React.StrictMode>,
 );
