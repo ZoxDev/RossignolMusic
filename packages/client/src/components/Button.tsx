@@ -22,7 +22,10 @@ const Button = (props: PropsButton) => {
   return (
     <>
       {props.styled ? (
-        <button className="button_container quicksand-normal" onClick={props.clickFunction}>
+        <button
+          className="button_container text-bold rounded-md bg-gray-900 border-2 border-gray-800 border-opacity-30"
+          onClick={props.clickFunction}
+        >
           <p>{props.text}</p>
           {props.imgName ? (
             <img className="button_icon" alt={props.imgAlt} src={`/${props.imgName}`} />

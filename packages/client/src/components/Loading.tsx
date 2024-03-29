@@ -7,8 +7,8 @@ type Loading = {
 const Loading = (props: Loading) => {
   return (
     <>
-      <span className="loading_container">
-        <h1 className=" quicksand-normal">{props.message}</h1>
+      <span className="loading_container rounded-md bg-gray-900 border-2 border-gray-800 border-opacity-30">
+        <h1 className="text-bold ">{props.message}</h1>
       </span>
     </>
   );
