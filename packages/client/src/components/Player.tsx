@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { songInfo } from '../hooks/useSearchSong';
 
 import { Slider } from '@mui/material';
 
