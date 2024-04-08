@@ -2,13 +2,13 @@
   "name": "rossignolmusic",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "dev": "pnpm -r run dev",
-    "build/client": "cd packages/client && pnpm run build",
-    "build/server": "cd packages/server && pnpm run build"
+    "dev": "pnpm -r run dev"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "ZoxDev",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.4.4"
+  }
 }

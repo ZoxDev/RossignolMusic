@@ -84,22 +84,20 @@ const RossignolView = () => {
           handleNext={handlePlayTrack}
         />
         <div className="rossignol_view_option_container">
-          <Button
-            text="RANDOM TRACK"
-            clickFunction={() => setOption('random')}
-            imgName={option === 'random' ? 'valid.svg' : 'nonvalid.svg'}
-            imgAlt={option === 'random' ? 'option random checked' : 'option random unchecked'}
-            keyCode="KeyR"
-            styled={true}
-          />
-          <Button
-            text="SIMILAR TRACK"
-            clickFunction={() => setOption('similar')}
-            imgName={option === 'similar' ? 'valid.svg' : 'nonvalid.svg'}
-            imgAlt={option === 'similar' ? 'option similar checked' : 'option similar unchecked'}
-            keyCode="KeyS"
-            styled={true}
-          />
+          <Button onClick={() => setOption('random')} keyCodeClick="KeyR">
+            RANDOM TRACK
+            <img
+              alt={option === 'random' ? 'option random checked' : 'option random unchecked'}
+              src={option === 'random' ? 'valid.svg' : 'nonvalid.svg'}
+            />
+          </Button>
+          <Button onClick={() => setOption('similar')} keyCodeClick="KeyS">
+            SIMILAR TRACK
+            <img
+              alt={option === 'similar' ? 'option similar checked' : 'option similar unchecked'}
+              src={option === 'similar' ? 'valid.svg' : 'nonvalid.svg'}
+            />
+          </Button>
         </div>
       </section>
     </>

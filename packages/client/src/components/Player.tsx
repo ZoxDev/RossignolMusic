@@ -91,7 +91,7 @@ const Player = (props: playerProps) => {
           />
         </div>
         <div className="bg-gray-950 bg-opacity-20 px-10 rounded-b-xl flex items-center justify-between z-50">
-          <Button clickFunction={() => setIsReplay(!isReplay)} styled={false} keyCode="KeyL">
+          <Button onClick={() => setIsReplay(!isReplay)} isUnstyled keyCodeClick="KeyL">
             <svg
               width="26"
               height="24"
@@ -105,7 +105,7 @@ const Player = (props: playerProps) => {
               ></path>
             </svg>
           </Button>
-          <Button clickFunction={props.handlePrev} styled={false} keyCode="ArrowLeft">
+          <Button onClick={props.handlePrev} isUnstyled keyCodeClick="ArrowLeft">
             <svg
               width="32"
               height="32"
@@ -130,7 +130,7 @@ const Player = (props: playerProps) => {
             </svg>
           </Button>
           <div className="cursor-pointer bg-white bg-opacity-5 w-24 h-24 rounded-full border-4 border-gray-800 border-opacity-75 flex items-center justify-center">
-            <Button clickFunction={handleTogglePlay} keyCode="Space" styled={false}>
+            <Button onClick={handleTogglePlay} keyCodeClick="Space" isUnstyled>
               {isPlaying ? (
                 <svg
                   id="pause-icon"
@@ -174,7 +174,7 @@ const Player = (props: playerProps) => {
               )}
             </Button>
           </div>
-          <Button clickFunction={props.handleNext} keyCode="ArrowRight" styled={false}>
+          <Button onClick={props.handleNext} keyCodeClick="ArrowRight" isUnstyled>
             <svg
               width="32"
               height="32"
@@ -199,9 +199,9 @@ const Player = (props: playerProps) => {
             </svg>
           </Button>
           <Button
-            clickFunction={() => navigator.clipboard.writeText(`${BASE_URL}${props.song?.videoId}`)}
-            keyCode="KeyC"
-            styled={false}
+            onClick={() => navigator.clipboard.writeText(`${BASE_URL}${props.song?.videoId}`)}
+            keyCodeClick="KeyC"
+            isUnstyled
           >
             <svg
               width="32"

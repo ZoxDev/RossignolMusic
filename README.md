@@ -1,4 +1,4 @@
-# RosignolMusic
+# RossignolMusic
 
 This is the MVP of my app, Rossignol Music.
 The aim of this app is to provide a new way of listening to music.

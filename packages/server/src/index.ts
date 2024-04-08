@@ -21,5 +21,5 @@ serve(
     fetch: app.fetch,
     port,
   },
-  () => console.log('server started')
+  () => console.log('server started'),
 );

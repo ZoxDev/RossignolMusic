@@ -1,17 +1,13 @@
 import '../styles/Loading.styles.css';
 
-type Loading = {
+type LoadingProps = {
   message: string;
 };
 
-const Loading = (props: Loading) => {
-  return (
-    <>
-      <span className="loading_container rounded-md bg-gray-900 border-2 border-gray-800 border-opacity-30">
-        <h1 className="text-bold ">{props.message}</h1>
-      </span>
-    </>
-  );
-};
+const Loading = ({ message }: LoadingProps) => (
+  <span className="loading_container rounded-md bg-gray-900 border-2 border-gray-800 border-opacity-30">
+    <h1 className="text-bold ">{message}</h1>
+  </span>
+);
 
 export default Loading;

@@ -1,42 +1,38 @@
+import { ComponentProps, PropsWithChildren, useCallback, useEffect, useRef } from 'react';
 import '../styles/Button.styles.css';
 
-type PropsButton = {
-  clickFunction: () => void;
-  text?: string;
-  imgName?: string;
-  imgAlt?: string;
-  keyCode?: string;
-  styled: boolean;
-  children?: string | JSX.Element;
-};
+type ButtonProps = PropsWithChildren<{
+  onClick: () => void;
+  keyCodeClick?: KeyboardEvent['code'];
+  isUnstyled?: boolean;
+}> &
+  ComponentProps<'button'>;
 
-const Button = (props: PropsButton) => {
-  const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.code === props.keyCode) {
-      props.clickFunction();
-    }
-  };
+const Button = ({ onClick, keyCodeClick, isUnstyled = false, children, ...rest }: ButtonProps) => {
+  const button = useRef<HTMLButtonElement>(null);
 
-  window.addEventListener('keydown', handleKeyDown);
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.code !== keyCodeClick) return;
+
+      button.current?.click();
+    },
+    [keyCodeClick],
+  );
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
+
+  const styleString = isUnstyled
+    ? ''
+    : 'button_container text-bold rounded-md bg-gray-900 border-2 border-gray-800 border-opacity-30';
 
   return (
-    <>
-      {props.styled ? (
-        <button
-          className="button_container text-bold rounded-md bg-gray-900 border-2 border-gray-800 border-opacity-30"
-          onClick={props.clickFunction}
-        >
-          <p>{props.text}</p>
-          {props.imgName ? (
-            <img className="button_icon" alt={props.imgAlt} src={`/${props.imgName}`} />
-          ) : (
-            ''
-          )}
-        </button>
-      ) : (
-        <button onClick={props.clickFunction}>{props.children}</button>
-      )}
-    </>
+    <button ref={button} className={styleString} onClick={onClick} {...rest}>
+      {children}
+    </button>
   );
 };
 
