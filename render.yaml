@@ -3,7 +3,7 @@ services:
     name: back
     runtime: node
     rootDir: packages/server
-    buildCommand: pnpm -F server build
+    buildCommand: pnpm -F server install && pnpm -F server build
     startCommand: pnpm -F server start
 
   - type: web
