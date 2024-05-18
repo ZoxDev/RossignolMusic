@@ -16,7 +16,6 @@ RUN pnpm install --frozen-lockfile
 
 COPY ./packages/server ./packages/server
 COPY ./tsconfig.base.json ./
-RUN ls -laR
 RUN pnpm -F server build
 
 EXPOSE 3000
